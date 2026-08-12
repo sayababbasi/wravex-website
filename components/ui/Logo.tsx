@@ -1,5 +1,6 @@
 import * as React from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { cn } from "@/lib/utils"
 
 interface LogoProps {
@@ -8,23 +9,20 @@ interface LogoProps {
 }
 
 export function Logo({ className, theme = "light" }: LogoProps) {
-  // ARCHITECTURE NOTE:
-  // When the final Axiora Software logo asset is provided, 
-  // replace this typographic rendering with a Next.js <Image /> component.
   return (
     <Link href="/" className={cn("flex flex-col justify-center select-none group", className)}>
-      <span className={cn(
-        "font-black tracking-tighter leading-none text-2xl md:text-[28px] transition-colors duration-300",
-        theme === "dark" ? "text-white group-hover:text-brand-cyan" : "text-brand-navy-deep group-hover:text-brand-blue"
+      <div className={cn(
+        "relative w-48 h-12 md:h-14 transition-all duration-300",
+        theme === "dark" ? "brightness-[200%] grayscale" : ""
       )}>
-        AXIORA
-      </span>
-      <span className={cn(
-        "font-bold tracking-[0.2em] text-[7px] md:text-[8px] uppercase mt-1 transition-colors duration-300",
-        theme === "dark" ? "text-gray-400 group-hover:text-white" : "text-text-secondary group-hover:text-brand-navy-deep"
-      )}>
-        Software
-      </span>
+        <Image 
+          src="/logo.png" 
+          alt="Axiora Software" 
+          fill 
+          className="object-contain object-left"
+          priority
+        />
+      </div>
     </Link>
   )
 }
