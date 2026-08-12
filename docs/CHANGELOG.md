@@ -1,5 +1,10 @@
 # Changelog
 
+## [Phase 18 Complete] - Comprehensive Careers Redesign
+- **Added**: `data/careers.ts` to type and store job posting data dynamically.
+- **Redesigned**: `app/careers/page.tsx` entirely to match the new UI specification. Added Hero, Open Positions (Experienced vs Internships), Why Axiora, How We Work, and General Application sections.
+- **Updated**: `app/api/careers/route.ts` to process new form fields (`phone`, `yearsExperience`, `portfolio`) and properly render them in the Resend HTML email.
+
 ## [Phase 17 Complete] - Rebranding to Axiora Software
 - **Migrated**: Rebranded website from Nexora Digital Technologies/Wravex Innovation to Axiora Software.
 - **Migrated**: Metadata, SEO, Open Graph tags updated to target `axiorasoftware.it.com`.

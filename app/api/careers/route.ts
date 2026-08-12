@@ -6,7 +6,7 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 export async function POST(req: Request) {
   try {
     const data = await req.json()
-    const { name, email, role, linkedin, message } = data
+    const { name, email, role, linkedin, message, phone, yearsExperience, portfolio } = data
 
     const emailHtml = `
       <!DOCTYPE html>
@@ -32,8 +32,11 @@ export async function POST(req: Request) {
                       <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="margin-bottom: 24px;">
                         <tr><td style="padding: 12px 0; border-bottom: 1px solid #f1f5f9;"><strong style="color: #64748b; font-size: 13px; text-transform: uppercase;">Applicant Name</strong><br><span style="color: #0f172a; font-size: 16px;">${name}</span></td></tr>
                         <tr><td style="padding: 12px 0; border-bottom: 1px solid #f1f5f9;"><strong style="color: #64748b; font-size: 13px; text-transform: uppercase;">Email Address</strong><br><a href="mailto:${email}" style="color: #2563eb; text-decoration: none; font-size: 16px;">${email}</a></td></tr>
+                        <tr><td style="padding: 12px 0; border-bottom: 1px solid #f1f5f9;"><strong style="color: #64748b; font-size: 13px; text-transform: uppercase;">Phone Number</strong><br><span style="color: #0f172a; font-size: 16px;">${phone || 'Not provided'}</span></td></tr>
                         <tr><td style="padding: 12px 0; border-bottom: 1px solid #f1f5f9;"><strong style="color: #64748b; font-size: 13px; text-transform: uppercase;">Role Applied For</strong><br><span style="color: #0f172a; font-size: 16px; font-weight: 600;">${role}</span></td></tr>
+                        <tr><td style="padding: 12px 0; border-bottom: 1px solid #f1f5f9;"><strong style="color: #64748b; font-size: 13px; text-transform: uppercase;">Years of Experience</strong><br><span style="color: #0f172a; font-size: 16px;">${yearsExperience || 'Not provided'}</span></td></tr>
                         <tr><td style="padding: 12px 0; border-bottom: 1px solid #f1f5f9;"><strong style="color: #64748b; font-size: 13px; text-transform: uppercase;">LinkedIn Profile</strong><br>${linkedin ? `<a href="${linkedin}" style="color: #2563eb; text-decoration: none; font-size: 16px;">${linkedin}</a>` : '<span style="color: #94a3b8;">Not provided</span>'}</td></tr>
+                        <tr><td style="padding: 12px 0; border-bottom: 1px solid #f1f5f9;"><strong style="color: #64748b; font-size: 13px; text-transform: uppercase;">Portfolio / GitHub</strong><br>${portfolio ? `<a href="${portfolio}" style="color: #2563eb; text-decoration: none; font-size: 16px;">${portfolio}</a>` : '<span style="color: #94a3b8;">Not provided</span>'}</td></tr>
                       </table>
 
                       <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 24px;">
@@ -64,8 +67,11 @@ New Job Application - Axiora Careers
 ------------------------------------
 Applicant: ${name}
 Email: ${email}
+Phone: ${phone || 'Not provided'}
 Role: ${role}
+Experience: ${yearsExperience || 'Not provided'}
 LinkedIn: ${linkedin || 'Not provided'}
+Portfolio: ${portfolio || 'Not provided'}
 
 Cover Letter / Message:
 ${message}

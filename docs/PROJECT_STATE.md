@@ -8,7 +8,7 @@
 - **Status:** Rebranding completed
 
 ## Current Phase
-PHASE 16 (Brand Migration) - COMPLETED
+PHASE 18 (Careers Redesign) - COMPLETED
 
 ## Status
 100% COMPLETE
