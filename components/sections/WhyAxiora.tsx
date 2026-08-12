@@ -33,7 +33,7 @@ const principles = [
   }
 ]
 
-export function WhyNexora() {
+export function WhyAxiora() {
   return (
     <section className="py-24 md:py-32 bg-white relative border-b border-gray-100">
       <div className="container mx-auto px-6 max-w-[1400px]">
@@ -42,7 +42,7 @@ export function WhyNexora() {
           {/* Left: Statement */}
           <div className="lg:col-span-4 flex flex-col items-start lg:sticky lg:top-32 h-fit">
             <div className="text-brand-blue font-bold tracking-[0.1em] text-[11px] uppercase mb-6">
-              WHY NEXORA
+              WHY AXIORA
             </div>
             
             <h2 className="text-[32px] md:text-[40px] font-bold tracking-tight text-brand-navy-deep leading-[1.15] mb-6">

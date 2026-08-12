@@ -21,7 +21,7 @@ export default function AboutClient() {
               Smart software for a faster world.
             </h1>
             <p className="text-text-secondary text-[18px] md:text-[22px] font-medium leading-[1.6] max-w-2xl">
-              Nexora Digital Technologies is a premier software engineering firm. We design, build, and scale resilient digital products that empower businesses to operate faster and smarter.
+              Axiora Software is a premier software engineering firm. We design, build, and scale resilient digital products that empower businesses to operate faster and smarter.
             </p>
           </motion.div>
         </div>

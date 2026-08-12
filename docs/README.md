@@ -1,6 +1,6 @@
-# Nexora Digital Technologies - Premium Corporate Website
+# Axiora Software - Premium Corporate Website
 
-This is the official frontend repository for the Nexora Digital Technologies website.
+This is the official frontend repository for the Axiora Software website.
 
 ## Tech Stack
 - Next.js

@@ -40,7 +40,7 @@ export default function ContactClient() {
             <div className="flex flex-col gap-8">
               <div>
                 <h4 className="text-[11px] font-bold tracking-widest uppercase text-brand-navy-deep mb-2">Email</h4>
-                <a href="mailto:hello@nexoradigitaltechnologies.com" className="text-[16px] text-text-secondary hover:text-brand-blue font-medium transition-colors">hello@nexoradigitaltechnologies.com</a>
+                <a href="mailto:hello@axiorasoftware.it.com" className="text-[16px] text-text-secondary hover:text-brand-blue font-medium transition-colors">hello@axiorasoftware.it.com</a>
               </div>
               <div>
                 <h4 className="text-[11px] font-bold tracking-widest uppercase text-brand-navy-deep mb-2">Headquarters</h4>

@@ -6,7 +6,7 @@
 - Vertical section spacing: 80-120px
 
 ## Homepage (/)
-Sections: Hero, Intro/Brand, Services, Solutions, Why Nexora, Featured Projects, Technology, Process, Testimonials, CTA.
+Sections: Hero, Intro/Brand, Services, Solutions, Why Axiora, Featured Projects, Technology, Process, Testimonials, CTA.
 
 ## Services (/services)
 Detailed service presentations. Individual pages for `/services/ai-solutions`, `/services/web-development`, etc.

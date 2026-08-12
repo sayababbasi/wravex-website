@@ -1,7 +1,7 @@
 # Project Requirements
 
 ## 1. Project Overview
-Nexora Digital Technologies is a software development company providing technology solutions. The website must establish Nexora as a professional, modern, and trustworthy technology company.
+Axiora Software is a software development company providing technology solutions. The website must establish Axiora as a professional, modern, and trustworthy technology company.
 
 ## 2. Primary Goals
 - Establish credibility

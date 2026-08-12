@@ -60,7 +60,7 @@ export function Footer() {
           <div className="lg:col-span-3">
             <h4 className="text-white font-bold text-[11px] uppercase tracking-widest mb-6">Contact</h4>
             <ul className="space-y-4">
-              <li className="text-[14px] text-gray-400 hover:text-white transition-colors"><a href="mailto:hello@nexoradigitaltechnologies.com">hello@nexoradigitaltechnologies.com</a></li>
+              <li className="text-[14px] text-gray-400 hover:text-white transition-colors"><a href="mailto:hello@axiorasoftware.it.com">hello@axiorasoftware.it.com</a></li>
               <li className="text-[14px] text-gray-400">+1 (123) 456-7890</li>
               <li className="text-[14px] text-gray-500 leading-relaxed mt-2">
                 123 Innovation Street<br />
@@ -74,7 +74,7 @@ export function Footer() {
 
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-gray-500">
-            © {new Date().getFullYear()} Nexora Digital Technologies. All rights reserved.
+            © {new Date().getFullYear()} Axiora Software. All rights reserved.
           </p>
           <div className="flex gap-6">
             <Link href="/privacy" className="text-xs text-gray-500 hover:text-white transition-colors">Privacy Policy</Link>

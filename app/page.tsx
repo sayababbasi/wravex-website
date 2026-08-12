@@ -2,7 +2,7 @@ import { Hero } from "@/components/hero/Hero"
 import { ServicesPreview } from "@/components/sections/ServicesPreview"
 import { Capabilities } from "@/components/sections/Capabilities"
 import { Solutions } from "@/components/sections/Solutions"
-import { WhyNexora } from "@/components/sections/WhyNexora"
+import { WhyAxiora } from "@/components/sections/WhyAxiora"
 import { Projects } from "@/components/sections/Projects"
 import { Technologies } from "@/components/sections/Technologies"
 import { Process } from "@/components/sections/Process"
@@ -15,7 +15,7 @@ export default function Home() {
       <ServicesPreview />
       <Capabilities />
       <Solutions />
-      <WhyNexora />
+      <WhyAxiora />
       <Projects />
       <Technologies />
       <Process />

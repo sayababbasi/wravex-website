@@ -31,7 +31,7 @@ export function Hero() {
             </h1>
             
             <p className="text-[17px] md:text-[19px] text-text-secondary max-w-lg mb-12 font-medium leading-[1.6] text-left">
-              Nexora Digital Technologies builds intelligent digital products, modern applications and automation solutions designed around real business needs.
+              Axiora Software builds intelligent digital products, modern applications and automation solutions designed around real business needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Button size="lg" asChild className="bg-[#1A56DB] hover:bg-[#1E40AF] text-white h-[52px] px-8 rounded font-semibold transition-all duration-300">
@@ -79,7 +79,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="hidden lg:block relative h-full min-h-[600px] w-full"
           >
-            {/* Highly sophisticated SVG Arrow composition tracking Nexora identity */}
+            {/* Highly sophisticated SVG Arrow composition tracking Axiora identity */}
             <div className="absolute right-[-10%] lg:right-[-20%] top-1/2 -translate-y-1/2 w-[140%] max-w-[900px] aspect-[4/3] pointer-events-none">
               <svg viewBox="0 0 900 600" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
                 {/* Background Grid Lines for structure */}

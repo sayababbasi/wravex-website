@@ -1,10 +1,10 @@
-# Nexora Digital Technologies Project State
+# Axiora Software Project State
 
 ## Brand Metadata
-- **Current Brand:** Nexora Digital Technologies
-- **Short Brand:** Nexora
-- **Domain:** nexoradigitaltechnologies.com
-- **Previous Brand:** Wravex Innovation
+- **Current Brand:** Axiora Software
+- **Short Brand:** Axiora
+- **Domain:** axiorasoftware.it.com
+- **Previous Brand:** Wravex Innovation / Nexora Digital Technologies
 - **Status:** Rebranding completed
 
 ## Current Phase

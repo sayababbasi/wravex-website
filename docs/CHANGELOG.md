@@ -1,5 +1,10 @@
 # Changelog
 
+## [Phase 17 Complete] - Rebranding to Axiora Software
+- **Migrated**: Rebranded website from Nexora Digital Technologies/Wravex Innovation to Axiora Software.
+- **Migrated**: Metadata, SEO, Open Graph tags updated to target `axiorasoftware.it.com`.
+- **Migrated**: Updated typographic placeholder logo architecture for Axiora Software.
+
 ## [Phase 16 Complete] - Rebranding
 - **Migrated**: Rebranded website from Wravex Innovation to Nexora Digital Technologies.
 - **Migrated**: Metadata, SEO, Open Graph tags updated to target `nexoradigitaltechnologies.com`.
