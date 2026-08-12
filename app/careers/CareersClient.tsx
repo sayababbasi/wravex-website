@@ -56,10 +56,15 @@ export default function CareersClient() {
   React.useEffect(() => {
     if (selectedJob || showGeneralForm) {
       document.body.style.overflow = 'hidden'
+      document.documentElement.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
     }
-    return () => { document.body.style.overflow = 'unset' }
+    return () => { 
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+    }
   }, [selectedJob, showGeneralForm])
 
   return (
@@ -297,7 +302,7 @@ export default function CareersClient() {
               initial={{ opacity: 0, y: 50, scale: 0.95 }} 
               animate={{ opacity: 1, y: 0, scale: 1 }} 
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative bg-white rounded-2xl w-full max-w-[800px] max-h-[90vh] overflow-y-auto shadow-2xl flex flex-col"
+              className="relative bg-white rounded-2xl w-full max-w-[800px] max-h-[90vh] overflow-y-auto overscroll-none shadow-2xl flex flex-col"
             >
               <div className="sticky top-0 bg-white/90 backdrop-blur-md border-b border-gray-100 p-6 flex justify-between items-center z-10">
                 <h3 className="text-[20px] font-bold text-brand-navy-deep">
