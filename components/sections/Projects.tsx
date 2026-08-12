@@ -50,7 +50,7 @@ export function Projects() {
                   {project.title}
                 </h3>
                 <p className="text-gray-300 text-[14px] md:text-[15px] font-medium leading-[1.6] max-w-sm">
-                  {project.description}
+                  {project.shortDescription}
                 </p>
               </div>
 

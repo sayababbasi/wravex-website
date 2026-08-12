@@ -1,5 +1,11 @@
 # Changelog
 
+## [Phases 3, 4, 5 Complete] - Current
+- **Added**: Data architecture for `services.ts` and `projects.ts` to power all routes.
+- **Added**: `app/services/page.tsx` (Services overview page).
+- **Added**: `app/services/[slug]/page.tsx` with dynamic static generation (SSG) and Client component abstraction for framer-motion support.
+- **Added**: `app/projects/page.tsx` (Premium Portfolio page) with dynamic CSS volumetric gradients and hover interactions.
+- **Fixed**: Replaced `logo.jpg` with `logo.png` in Navbar and Footer components.
 ## [Phase 2 Redesign] - Current
 - **Added**: `Capabilities.tsx` section to expand on service domains.
 - **Added**: `Solutions.tsx` section with a structured business-value flow diagram.
