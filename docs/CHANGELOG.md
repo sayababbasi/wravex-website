@@ -1,5 +1,11 @@
 # Changelog
 
+## [Phases 9-15 Complete] - Final
+- **Added**: Complete SEO `metadata` architecture across all pages using Server/Client component splitting.
+- **Added**: Active state routing logic inside `Navbar.tsx` based on `usePathname`.
+- **Fixed**: Removed duplicate metadata fields in `layout.tsx`.
+- **Verified**: Full 17/17 Next.js static production build compilation.
+
 ## [Phases 6, 7, 8 Complete] - Current
 - **Added**: `app/projects/[slug]/page.tsx` with SSG and Client component abstraction.
 - **Added**: `app/about/page.tsx` with editorial philosophy section.

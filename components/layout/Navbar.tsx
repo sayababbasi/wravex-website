@@ -57,7 +57,7 @@ export function Navbar() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center justify-center gap-10 absolute left-1/2 -translate-x-1/2">
             {navLinks.map((link) => {
-              const isActive = pathname === link.href
+              const isActive = pathname === link.href || (link.href !== "/" && pathname?.startsWith(link.href))
               return (
                 <div key={link.name} className="relative py-2 group">
                   <Link 

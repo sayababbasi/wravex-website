@@ -5,6 +5,27 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 
+export const metadata: Metadata = {
+  title: {
+    template: "%s | Wravex Innovation",
+    default: "Wravex Innovation | Smart software for a faster world.",
+  },
+  description: "Wravex Innovation is a premier software engineering firm building scalable, resilient digital products that empower businesses to operate faster and smarter.",
+  keywords: ["Software Development", "AI Solutions", "Web Development", "Mobile Apps", "Enterprise Software", "Automation"],
+  openGraph: {
+    title: "Wravex Innovation",
+    description: "Smart software for a faster world.",
+    url: "https://wravex.com",
+    siteName: "Wravex Innovation",
+    locale: "en_US",
+    type: "website",
+  },
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  }
+};
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -15,14 +36,7 @@ const outfit = Outfit({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Wravex Innovation | Software Engineering & AI Solutions",
-  description: "Wravex Innovation is a premium software engineering agency specializing in custom SaaS platforms, AI integrations, and automated business operations.",
-  icons: {
-    icon: "/favicon.jpg",
-    apple: "/favicon.jpg",
-  }
-};
+
 
 export default function RootLayout({
   children,
