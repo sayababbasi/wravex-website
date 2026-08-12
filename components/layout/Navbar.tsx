@@ -6,13 +6,12 @@ import { usePathname } from "next/navigation"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/Button"
-import { MobileMenu } from "./MobileMenu"
+import { MobileMenu } from "@/components/layout/MobileMenu"
 import { ChevronDown, ArrowRight } from "lucide-react"
 
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "Services", href: "/services", hasDropdown: true },
-  { name: "Solutions", href: "/solutions" },
   { name: "Projects", href: "/projects" },
   { name: "About", href: "/about" },
 ]
