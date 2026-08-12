@@ -1,5 +1,6 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
+import { FadeIn } from "@/components/ui/FadeIn"
 
 interface SectionHeadingProps extends React.HTMLAttributes<HTMLDivElement> {
   eyebrow?: string;
@@ -17,7 +18,7 @@ export function SectionHeading({
   ...props
 }: SectionHeadingProps) {
   return (
-    <div
+    <FadeIn
       className={cn(
         "flex flex-col gap-4",
         alignment === "center" ? "text-center items-center" : "text-left items-start",
@@ -38,6 +39,6 @@ export function SectionHeading({
           {description}
         </p>
       )}
-    </div>
+    </FadeIn>
   )
 }

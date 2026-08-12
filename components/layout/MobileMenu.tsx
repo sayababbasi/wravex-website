@@ -15,10 +15,7 @@ export function MobileMenu({ navLinks }: MobileMenuProps) {
   const [isOpen, setIsOpen] = React.useState(false)
   const pathname = usePathname()
 
-  // Close menu when route changes
-  React.useEffect(() => {
-    setIsOpen(false)
-  }, [pathname])
+  // Close menu when route changes via onClick instead of useEffect to avoid cascading render
 
   // Prevent scroll when open
   React.useEffect(() => {
@@ -70,6 +67,7 @@ export function MobileMenu({ navLinks }: MobileMenuProps) {
                     "text-2xl font-semibold transition-colors hover:text-brand-blue",
                     pathname === link.href ? "text-brand-blue" : "text-brand-navy-deep"
                   )}
+                  onClick={() => setIsOpen(false)}
                 >
                   {link.label}
                 </Link>
@@ -80,13 +78,14 @@ export function MobileMenu({ navLinks }: MobileMenuProps) {
                   "text-2xl font-semibold transition-colors hover:text-brand-blue",
                   pathname === "/contact" ? "text-brand-blue" : "text-brand-navy-deep"
                 )}
+                onClick={() => setIsOpen(false)}
               >
                 Contact
               </Link>
             </nav>
 
             <Button asChild variant="primary" size="lg" className="w-full max-w-xs mt-4">
-              <Link href="/contact">Start a Project</Link>
+              <Link href="/contact" onClick={() => setIsOpen(false)}>Start a Project</Link>
             </Button>
           </div>
         </div>

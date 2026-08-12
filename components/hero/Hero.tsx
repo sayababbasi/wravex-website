@@ -1,78 +1,134 @@
 "use client"
-
 import * as React from "react"
-import Link from "next/link"
 import { motion } from "framer-motion"
-import { Container } from "@/components/ui/Container"
 import { Button } from "@/components/ui/Button"
-import { HeroGraphic } from "./HeroGraphic"
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 
 export function Hero() {
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 lg:pt-48 lg:pb-32 overflow-hidden bg-white">
-      <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 bg-[#FAFBFC] overflow-hidden border-b border-border-subtle">
+      
+      <div className="container mx-auto px-6 relative z-10 max-w-[1400px]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
-          {/* Content Column - Asymmetric width */}
-          <div className="lg:col-span-7 flex flex-col items-start z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-            >
-              <span className="inline-block py-1 px-3 rounded-full bg-brand-blue/10 text-brand-blue text-sm font-semibold tracking-wide uppercase mb-6">
-                Wravex Innovation
-              </span>
-            </motion.div>
+          {/* Left Column - Typography */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-6 flex flex-col items-start pt-10"
+          >
+            <div className="flex items-center gap-3 text-brand-blue font-bold tracking-[0.15em] text-[11px] md:text-xs uppercase mb-8">
+              <span className="w-2 h-2 rounded-full bg-brand-blue" />
+              SOFTWARE &bull; AI &bull; AUTOMATION
+            </div>
+
+            <h1 className="text-[48px] md:text-[68px] lg:text-[76px] font-black tracking-[-0.03em] leading-[1.05] mb-6 text-brand-navy-deep text-left">
+              WE BUILD SMART <br className="hidden md:block"/>
+              SOFTWARE FOR A <br className="hidden md:block"/>
+              <span className="text-brand-blue">FASTER</span> WORLD.
+            </h1>
             
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-              className="text-5xl md:text-6xl lg:text-[72px] font-bold tracking-tight text-brand-navy-deep leading-[1.1] mb-6"
-            >
-              We Build Smart<br />
-              Software for a<br />
-              <span className="text-brand-blue">Faster World.</span>
-            </motion.h1>
+            <p className="text-[17px] md:text-[19px] text-text-secondary max-w-lg mb-12 font-medium leading-[1.6] text-left">
+              Wravex Innovation builds intelligent digital products, modern applications and automation solutions designed around real business needs.
+            </p>
 
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-              className="text-lg md:text-xl text-text-secondary max-w-2xl mb-10 leading-relaxed"
-            >
-              Wravex Innovation builds AI-powered solutions, modern web and mobile applications, intelligent automation, and custom software designed around real business needs.
-            </motion.p>
-
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4"
-            >
-              <Button asChild size="lg" variant="primary">
-                <Link href="/contact">Start a Project</Link>
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-16">
+              <Button asChild size="lg" className="h-14 px-8 rounded bg-brand-blue hover:bg-brand-navy-deep text-white font-semibold text-base transition-colors duration-300 shadow-md">
+                <Link href="/contact">
+                  Start a Project
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
               </Button>
-              <Button asChild size="lg" variant="secondary">
-                <Link href="/services">Explore Services</Link>
+              <Button asChild variant="outline" size="lg" className="h-14 px-8 rounded border-gray-300 text-brand-navy-deep font-semibold text-base hover:bg-gray-50 transition-colors duration-300">
+                <Link href="/services">
+                  Explore Services
+                  <ArrowRight className="w-4 h-4 ml-2 opacity-50" />
+                </Link>
               </Button>
-            </motion.div>
-          </div>
+            </div>
+            
+            {/* Trust Bar */}
+            <div className="flex flex-col items-start w-full mt-4">
+              <span className="text-[10px] font-bold text-text-secondary tracking-widest uppercase mb-4">
+                TRUSTED BY BUSINESSES TO DELIVER IMPACT
+              </span>
+              <div className="flex flex-wrap gap-6 md:gap-10 items-center opacity-40 grayscale">
+                <div className="flex items-center font-bold tracking-tight text-lg md:text-xl">
+                  <span className="w-5 h-5 rounded border-2 border-current mr-2 flex items-center justify-center text-[10px]">L</span>
+                  logipsum
+                </div>
+                <div className="flex items-center font-bold tracking-tight text-lg md:text-xl">
+                  <span className="w-5 h-5 rounded-full border-2 border-current mr-2" />
+                  LOGOIPSUM
+                </div>
+                <div className="flex items-center font-bold tracking-tight text-lg md:text-xl italic">
+                  logo ipsum
+                </div>
+                <div className="hidden md:flex items-center font-bold tracking-tight text-xl">
+                  LOGOIPSUM
+                </div>
+              </div>
+            </div>
+          </motion.div>
 
-          {/* Graphic Column */}
-          <div className="lg:col-span-5 relative z-0">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            >
-              <HeroGraphic />
-            </motion.div>
-          </div>
-          
+          {/* Right Column - Custom Upward Arrow Visual */}
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-6 relative h-full min-h-[400px] lg:min-h-[600px] flex items-center justify-center lg:justify-end"
+          >
+            {/* Highly sophisticated SVG Arrow composition tracking Wravex identity */}
+            <div className="absolute right-[-10%] lg:right-[-20%] top-1/2 -translate-y-1/2 w-[140%] max-w-[900px] aspect-[4/3] pointer-events-none">
+              <svg viewBox="0 0 900 600" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+                {/* Background Grid Lines for structure */}
+                <path d="M0 450 L900 450 M0 500 L900 500 M0 550 L900 550" stroke="#E4E7EC" strokeWidth="1" strokeDasharray="4 4" />
+                <path d="M600 0 L600 600 M650 0 L650 600 M700 0 L700 600 M750 0 L750 600" stroke="#E4E7EC" strokeWidth="1" strokeDasharray="4 4" />
+
+                {/* Sub-layers for depth mimicking the mockup */}
+                <path d="M -100 480 Q 300 480, 500 200 L 480 150 Q 250 430, -100 430 Z" fill="url(#grad2)" opacity="0.4" />
+                <path d="M 0 550 Q 400 550, 750 250 L 730 200 Q 350 500, 0 500 Z" fill="url(#grad2)" opacity="0.3" />
+                
+                {/* Main Dynamic Arrow */}
+                <path d="M -100 400 Q 350 400, 700 100 L 750 150 L 820 20 L 670 50 L 710 90 Q 300 350, -100 350 Z" fill="url(#grad1)" />
+                
+                {/* Volumetric Overlay Layer */}
+                <path d="M -100 350 Q 300 350, 710 90 L 670 50 L 820 20 L 750 150 L 700 100 Q 350 400, -100 400 Z" fill="url(#grad3)" style={{mixBlendMode:'overlay'}} opacity="0.7"/>
+
+                {/* Light Flares / Energy Accents */}
+                <circle cx="750" cy="100" r="150" fill="url(#glow)" opacity="0.5" />
+                <circle cx="200" cy="400" r="200" fill="url(#glow)" opacity="0.3" />
+                
+                {/* Structural Accent Lines */}
+                <path d="M 100 350 L 400 150" stroke="#20B8E8" strokeWidth="0.5" opacity="0.3" />
+                <path d="M 200 450 L 600 200" stroke="#20B8E8" strokeWidth="0.5" opacity="0.2" />
+
+                <defs>
+                  <linearGradient id="grad1" x1="0" y1="450" x2="800" y2="50" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#0B2A5B" />
+                    <stop offset="40%" stopColor="#1261C9" />
+                    <stop offset="100%" stopColor="#20B8E8" />
+                  </linearGradient>
+                  <linearGradient id="grad2" x1="0" y1="550" x2="800" y2="200" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#1261C9" stopOpacity="0" />
+                    <stop offset="100%" stopColor="#20B8E8" stopOpacity="0.8" />
+                  </linearGradient>
+                  <linearGradient id="grad3" x1="0" y1="350" x2="800" y2="20" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
+                    <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+                  </linearGradient>
+                  <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+                    <stop offset="0%" stopColor="#72D9F5" stopOpacity="0.4" />
+                    <stop offset="100%" stopColor="#72D9F5" stopOpacity="0" />
+                  </radialGradient>
+                </defs>
+              </svg>
+            </div>
+          </motion.div>
         </div>
-      </Container>
+      </div>
     </section>
   )
 }

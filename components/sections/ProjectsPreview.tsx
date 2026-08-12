@@ -1,54 +1,99 @@
+"use client"
+import * as React from "react"
+import { motion, useScroll, useTransform } from "framer-motion"
 import Link from "next/link"
-import { Section } from "@/components/ui/Section"
-import { Container } from "@/components/ui/Container"
-import { SectionHeading } from "@/components/ui/SectionHeading"
-import { Button } from "@/components/ui/Button"
-import { Card } from "@/components/ui/Card"
+import { ArrowRight } from "lucide-react"
 
-const placeholders = [
-  { title: "SaaS Platform", desc: "Intelligent Business Platform", tags: ["Next.js", "AI", "PostgreSQL"] },
-  { title: "Enterprise Dashboard", desc: "Automated Data Workflow", tags: ["React", "Python", "AWS"] }
+const projects = [
+  {
+    client: "Fintech Platform",
+    title: "Global Payment Infrastructure",
+    description: "A high-performance system processing $1M+ daily transactions with sub-second latency.",
+    tags: ["React", "Go", "AWS"],
+    color: "bg-brand-blue/5",
+  },
+  {
+    client: "Healthcare SaaS",
+    title: "AI-Powered Diagnostics",
+    description: "An autonomous agent assisting doctors with real-time patient data analysis.",
+    tags: ["Next.js", "Python", "LLMs"],
+    color: "bg-brand-cyan/5",
+  },
+  {
+    client: "E-Commerce Enterprise",
+    title: "Headless Storefront",
+    description: "A decoupled architecture enabling 3x faster page loads and multi-region deployment.",
+    tags: ["Next.js", "Shopify", "Vercel"],
+    color: "bg-gray-100",
+  },
+  {
+    client: "Logistics Dashboard",
+    title: "Real-time Fleet Tracking",
+    description: "A comprehensive dashboard for monitoring 10,000+ vehicles globally.",
+    tags: ["Vue", "Node.js", "WebSockets"],
+    color: "bg-brand-navy-deep/5",
+  }
 ]
 
 export function ProjectsPreview() {
+  const targetRef = React.useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+  })
+
+  // To map 0 -> 1 scroll progress to 0% -> -[percent]% x offset
+  const x = useTransform(scrollYProgress, [0, 1], ["1%", "-60%"])
+
   return (
-    <Section className="bg-white">
-      <Container>
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
-          <SectionHeading 
-            eyebrow="Selected Work"
-            title="Ideas We've Turned Into Software"
-          />
-          <Button asChild variant="outline" className="shrink-0">
-            <Link href="/projects">View All Projects</Link>
-          </Button>
-        </div>
+    <section ref={targetRef} className="relative h-[300vh] bg-background">
+      <div className="sticky top-0 h-screen flex items-center overflow-hidden">
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {placeholders.map((p, i) => (
-            <Card key={i} className="p-0 overflow-hidden group border-0 shadow-sm bg-background">
-              <div className="aspect-[4/3] bg-brand-navy/5 relative flex items-center justify-center overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-tr from-brand-blue/10 to-transparent mix-blend-multiply opacity-50 group-hover:opacity-100 transition-opacity" />
-                <span className="text-brand-navy/20 font-medium tracking-widest uppercase">Project Preview</span>
-              </div>
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-brand-navy-deep mb-2">{p.title}</h3>
-                <p className="text-text-secondary mb-6">{p.desc}</p>
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {p.tags.map((tag, j) => (
-                    <span key={j} className="text-xs font-semibold px-2 py-1 bg-white border border-border-subtle rounded-md text-text-secondary">
+        <div className="absolute top-32 left-0 w-full px-6 md:px-12 lg:px-24 z-20 pointer-events-none">
+          <div className="flex justify-between items-end max-w-[1400px] mx-auto w-full">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-brand-navy-deep">
+              Featured Work.
+            </h2>
+            <Link href="/projects" className="pointer-events-auto group flex items-center gap-2 text-brand-blue hover:text-brand-navy-deep transition-colors mb-2 font-medium text-sm tracking-wide">
+              View Archive
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+        </div>
+
+        <motion.div style={{ x }} className="flex gap-6 lg:gap-8 px-[10vw] pt-24">
+          {projects.map((project, index) => (
+            <div 
+              key={index} 
+              className="w-[85vw] md:w-[60vw] lg:w-[40vw] h-[50vh] max-h-[500px] shrink-0 flex flex-col justify-between p-8 lg:p-12 rounded-xl border border-border-subtle bg-white shadow-sm relative group hover:shadow-md transition-shadow duration-300"
+            >
+              <div className="relative z-10 flex flex-col h-full">
+                <span className="text-brand-blue font-semibold text-xs tracking-widest uppercase mb-4 block">
+                  {project.client}
+                </span>
+                
+                <h3 className="text-3xl lg:text-4xl font-medium tracking-tight mb-4 text-brand-navy-deep leading-tight">
+                  {project.title}
+                </h3>
+                
+                <p className="text-text-secondary text-base lg:text-lg mb-8 max-w-sm leading-relaxed font-normal">
+                  {project.description}
+                </p>
+                
+                <div className="mt-auto flex flex-wrap gap-2">
+                  {project.tags.map(tag => (
+                    <span key={tag} className="px-3 py-1.5 rounded-md border border-border-subtle text-xs text-text-secondary font-medium bg-gray-50">
                       {tag}
                     </span>
                   ))}
                 </div>
-                <Link href="#" className="inline-flex items-center text-brand-blue font-semibold hover:text-brand-navy transition-colors">
-                  View Case Study <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-                </Link>
               </div>
-            </Card>
+
+              {/* Decorative Geometric Element */}
+              <div className={`absolute right-8 top-8 w-24 h-24 rounded-full ${project.color} opacity-50 group-hover:scale-110 transition-transform duration-500`} />
+            </div>
           ))}
-        </div>
-      </Container>
-    </Section>
+        </motion.div>
+      </div>
+    </section>
   )
 }

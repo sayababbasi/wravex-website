@@ -1,9 +1,9 @@
 import { Hero } from "@/components/hero/Hero"
-import { BrandStatement } from "@/components/sections/BrandStatement"
 import { ServicesPreview } from "@/components/sections/ServicesPreview"
-import { SolutionsPreview } from "@/components/sections/SolutionsPreview"
+import { Capabilities } from "@/components/sections/Capabilities"
+import { Solutions } from "@/components/sections/Solutions"
 import { WhyWravex } from "@/components/sections/WhyWravex"
-import { ProjectsPreview } from "@/components/sections/ProjectsPreview"
+import { Projects } from "@/components/sections/Projects"
 import { Technologies } from "@/components/sections/Technologies"
 import { Process } from "@/components/sections/Process"
 import { CTA } from "@/components/sections/CTA"
@@ -12,14 +12,14 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <BrandStatement />
       <ServicesPreview />
-      <SolutionsPreview />
+      <Capabilities />
+      <Solutions />
       <WhyWravex />
-      <ProjectsPreview />
+      <Projects />
       <Technologies />
       <Process />
       <CTA />
     </>
-  );
+  )
 }

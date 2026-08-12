@@ -1,74 +1,95 @@
+"use client"
+import * as React from "react"
+import { motion } from "framer-motion"
 import Link from "next/link"
-import { Container } from "@/components/ui/Container"
-import { Section } from "@/components/ui/Section"
-import { Card } from "@/components/ui/Card"
-import { Button } from "@/components/ui/Button"
+import { ArrowUpRight } from "lucide-react"
+import { projects } from "@/data/projects"
 import { CTA } from "@/components/sections/CTA"
-
-const placeholders = [
-  { title: "Financial SaaS Platform", desc: "Intelligent Business Platform designed to automate accounting and reporting processes.", tags: ["Next.js", "AI", "PostgreSQL"] },
-  { title: "Enterprise Dashboard", desc: "Automated Data Workflow allowing 360-degree visibility into manufacturing operations.", tags: ["React", "Python", "AWS"] },
-  { title: "Logistics Application", desc: "Real-time tracking and delivery management system for a regional carrier.", tags: ["React Native", "Node.js", "Redis"] },
-  { title: "Healthcare Portal", desc: "Secure, HIPAA-compliant patient communication and records management platform.", tags: ["TypeScript", "FastAPI", "MongoDB"] }
-]
 
 export default function ProjectsPage() {
   return (
     <>
-      <section className="pt-32 pb-20 md:pt-40 md:pb-28 bg-brand-navy-deep text-white text-center">
-        <Container>
-          <div className="max-w-4xl mx-auto flex flex-col items-center">
-            <span className="inline-block py-1 px-3 rounded-full bg-brand-cyan/10 text-brand-cyan text-sm font-semibold tracking-wide uppercase mb-6">
-              Our Work
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-[64px] font-bold tracking-tight leading-tight mb-6">
-              Ideas We've Turned Into Software
+      {/* Projects Hero */}
+      <section className="pt-40 pb-24 md:pt-48 md:pb-32 bg-white relative border-b border-gray-100">
+        <div className="container mx-auto px-6 max-w-[1400px]">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl"
+          >
+            <div className="text-brand-blue font-bold tracking-[0.15em] text-[10px] uppercase mb-6">
+              SELECTED WORK
+            </div>
+            <h1 className="text-[40px] md:text-[56px] lg:text-[72px] font-bold tracking-tighter text-brand-navy-deep leading-[1.05] mb-8">
+              Built to make an impact.
             </h1>
-            <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto">
-              A selection of digital products, platforms, and automation systems we've built to solve complex business challenges.
+            <p className="text-text-secondary text-[18px] md:text-[22px] font-medium leading-[1.6] max-w-2xl">
+              We engineer digital products that solve complex operational challenges and drive measurable growth for our clients.
             </p>
-          </div>
-        </Container>
+          </motion.div>
+        </div>
       </section>
 
-      <Section className="bg-background">
-        <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-            {placeholders.map((p, i) => (
-              <Card key={i} className="p-0 overflow-hidden group border-0 shadow-sm bg-white">
-                <div className="aspect-[16/9] bg-brand-navy/5 relative flex items-center justify-center overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-brand-blue/10 to-transparent mix-blend-multiply opacity-50 group-hover:opacity-100 transition-opacity" />
-                  <span className="text-brand-navy/20 font-medium tracking-widest uppercase">Case Study Coming Soon</span>
+      {/* Projects List */}
+      <section className="py-24 bg-[#FAFBFC]">
+        <div className="container mx-auto px-6 max-w-[1400px]">
+          <div className="flex flex-col gap-12 md:gap-32">
+            {projects.map((project, i) => (
+              <motion.div 
+                key={project.slug}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.7 }}
+                className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center"
+              >
+                
+                {/* Project Visual (Volumetric Gradient Placeholder) */}
+                <div className={`order-2 lg:order-${i % 2 === 0 ? '1' : '2'} aspect-[4/3] rounded-2xl relative overflow-hidden bg-gradient-to-br from-[#0A1629] to-[#040C1A] group shadow-xl`}>
+                  <div className="absolute inset-0 opacity-20 transition-opacity duration-700 group-hover:opacity-40" style={{
+                    backgroundImage: 'radial-gradient(circle at 20% 30%, rgba(32,184,232,0.4) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(18,97,201,0.4) 0%, transparent 50%)'
+                  }} />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-white/5 font-black text-6xl whitespace-nowrap pointer-events-none uppercase tracking-widest mix-blend-overlay">
+                    {project.category}
+                  </div>
                 </div>
-                <div className="p-8 md:p-10">
-                  <h3 className="text-2xl font-bold text-brand-navy-deep mb-4">{p.title}</h3>
-                  <p className="text-text-secondary mb-8 leading-relaxed">{p.desc}</p>
-                  <div className="flex flex-wrap gap-2 mb-8">
-                    {p.tags.map((tag, j) => (
-                      <span key={j} className="text-xs font-semibold px-2 py-1 bg-background border border-border-subtle rounded-md text-text-secondary">
-                        {tag}
+
+                {/* Project Info */}
+                <div className={`order-1 lg:order-${i % 2 === 0 ? '2' : '1'} flex flex-col`}>
+                  <div className="text-brand-blue font-bold tracking-[0.1em] text-[11px] uppercase mb-4">
+                    {project.category}
+                  </div>
+                  <h2 className="text-[32px] md:text-[40px] font-bold tracking-tight text-brand-navy-deep leading-[1.15] mb-6">
+                    {project.title}
+                  </h2>
+                  <p className="text-text-secondary text-[16px] leading-[1.7] font-medium mb-10 max-w-lg">
+                    {project.fullDescription}
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-2 mb-10">
+                    {project.technologies.slice(0, 5).map((tech, j) => (
+                      <span key={j} className="px-3 py-1.5 bg-white border border-gray-200 rounded text-[12px] font-bold text-brand-navy-deep shadow-sm">
+                        {tech}
                       </span>
                     ))}
                   </div>
-                  <Link href="/contact" className="inline-flex items-center text-brand-blue font-semibold hover:text-brand-navy transition-colors">
-                    Request Details <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+
+                  <Link 
+                    href={`/projects/${project.slug}`}
+                    className="inline-flex items-center gap-3 text-brand-navy-deep hover:text-brand-blue font-bold transition-colors duration-300 text-[14px] uppercase tracking-wide group w-max"
+                  >
+                    View Case Study
+                    <span className="w-8 h-8 rounded-full bg-brand-blue/10 flex items-center justify-center group-hover:bg-brand-blue group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-md group-hover:-translate-y-0.5">
+                      <ArrowUpRight className="w-4 h-4" />
+                    </span>
                   </Link>
                 </div>
-              </Card>
+              </motion.div>
             ))}
           </div>
-          
-          <div className="mt-20 p-10 bg-brand-navy/5 rounded-3xl text-center">
-            <h3 className="text-2xl font-bold text-brand-navy-deep mb-4">Looking for something specific?</h3>
-            <p className="text-text-secondary max-w-2xl mx-auto mb-8">
-              Due to NDA restrictions, we cannot publicly display all of our enterprise work. Contact us directly for relevant private case studies.
-            </p>
-            <Button asChild variant="primary">
-              <Link href="/contact">Request Private Case Studies</Link>
-            </Button>
-          </div>
-        </Container>
-      </Section>
+        </div>
+      </section>
       
       <CTA />
     </>

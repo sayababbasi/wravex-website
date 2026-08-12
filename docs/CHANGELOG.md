@@ -1,5 +1,21 @@
 # Changelog
 
+## [Phase 2 Redesign] - Current
+- **Added**: `Capabilities.tsx` section to expand on service domains.
+- **Added**: `Solutions.tsx` section with a structured business-value flow diagram.
+- **Added**: `WhyWravex.tsx` section mimicking a high-end consultancy presentation.
+- **Added**: `Projects.tsx` section with premium dark cards and subtle hover scaling.
+- **Added**: `Technologies.tsx` section with a clean, low-opacity logo grid.
+- **Added**: `Process.tsx` section featuring a horizontal dashed timeline.
+- **Added**: `CTA.tsx` full-width dark section with a custom SVG arrow graphic.
+- **Redesigned**: `Footer.tsx` rewritten into a 4-column deep navy architecture with raw SVG social icons.
+- **Integrated**: `app/page.tsx` now successfully compiles all 9 components into a seamless, unified scroll experience.
+## [Phase 1 Redesign] - Current
+- **Refactored**: `app/page.tsx` stripped of all non-Phase 1 components to guarantee a clean slate.
+- **Redesigned**: `Navbar.tsx` rewritten for a pure, lightweight enterprise aesthetic (white background, standard interactions).
+- **Redesigned**: `Hero.tsx` converted to a strict editorial split layout featuring tightly tracked typography and a custom SVG/CSS layered architecture arrow visual.
+- **Redesigned**: `ServicesPreview.tsx` updated to a sophisticated grid layout with numbered items, subtle borders, and refined hover states.
+- **Removed**: All "AI-generated" UI patterns, including custom cursors, magnetic springs, and excessive glassmorphism.
 All notable changes to this project will be documented in this file.
 
 ## [1.0.0] - Initial Setup
@@ -24,8 +40,46 @@ All notable changes to this project will be documented in this file.
 
 ## Phase 06 - Services Experience
 - **Date**: 2026-08-12
+- **Major changes**: Created `/services` and dynamic route `/services/[slug]`.
+
+## Phase 07 - Projects / Portfolio
+- **Date**: 2026-08-12
+- **Major changes**: Created `/projects/page.tsx` with a placeholder structure.
+
+## Phase 08 - About Experience
+- **Date**: 2026-08-12
+- **Major changes**: Created `/about/page.tsx`.
+
+## Phase 09 - Contact Experience
+- **Date**: 2026-08-12
+- **Major changes**: Created `/contact/page.tsx` with a split layout and client-side form logic.
+
+## Phase 10 - Global Interactions & Animation
+- **Date**: 2026-08-12
+- **Major changes**: Implemented `FadeIn.tsx` component and wrapped UI elements for subtle entrance animations.
+
+## Phase 11 - Responsive Refinement
+- **Date**: 2026-08-12
+- **Major changes**: Verified and finalized responsive classes across all pages and components.
+
+## Phase 12 - SEO & Accessibility
+- **Date**: 2026-08-12
+- **Major changes**: Added Next.js `Metadata` exports to all static and dynamic pages.
+
+## Phase 13 - Performance Optimization
+- **Date**: 2026-08-12
+- **Major changes**: Verified 100% static generation (SSG) for all routes via `next build`.
+
+## Phase 14 - QA & Visual Polish
+- **Date**: 2026-08-12
 - **Major changes**: 
-  - Created `/services` index page.
-  - Built a dynamic service page template (`ServicePageTemplate.tsx`) and dynamic route `/services/[slug]`.
-  - Statically generated 5 primary service pages using `generateStaticParams`.
-- **Testing**: Successfully ran `npm run build`.
+  - Ran global ESLint check (`npm run lint`).
+  - Fixed unescaped quotes, redundant `useEffect` hooks, and empty interfaces.
+  - Verified code quality and component structure.
+
+## Phase 15 - Final Production Preparation
+- **Date**: 2026-08-12
+- **Major changes**: 
+  - Performed final audit.
+  - Finalized `PROJECT_STATE.md` and `CHANGELOG.md`.
+  - Project development complete according to `/docs`.

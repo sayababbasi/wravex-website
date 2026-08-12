@@ -1,17 +1,27 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
+import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import "./globals.css";
+import { SmoothScroll } from "@/components/layout/SmoothScroll";
 
 const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  variable: "--font-sans",
+});
+
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Wravex Innovation | Smart Software for a Faster World",
-  description: "Wravex Innovation builds AI solutions, web and mobile applications, automation systems and custom business software for modern businesses.",
+  title: "Wravex Innovation | Software Engineering & AI Solutions",
+  description: "Wravex Innovation is a premium software engineering agency specializing in custom SaaS platforms, AI integrations, and automated business operations.",
+  icons: {
+    icon: "/favicon.jpg",
+    apple: "/favicon.jpg",
+  }
 };
 
 export default function RootLayout({
@@ -20,13 +30,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased min-h-screen flex flex-col`}>
-        <Navbar />
-        <main className="flex-1">
-          {children}
-        </main>
-        <Footer />
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.variable} ${outfit.variable} antialiased bg-background text-text-primary selection:bg-brand-cyan/30 selection:text-white`}>
+        <SmoothScroll>
+          <Navbar />
+          <main className="min-h-screen pt-20">
+            {children}
+          </main>
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );
