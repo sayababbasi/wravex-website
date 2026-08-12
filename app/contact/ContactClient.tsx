@@ -252,12 +252,17 @@ export default function ContactClient() {
             transition={{ duration: 0.6 }}
             className="relative h-[400px] md:h-[500px] w-full rounded-2xl overflow-hidden shadow-lg border border-gray-200"
           >
-            <Image 
-              src="/contact/contact-map.png" 
-              alt="Axiora Software Location Map" 
-              fill 
-              className="object-cover"
-            />
+            <iframe 
+              src="https://maps.google.com/maps?q=New+Liberty+Tower,+Model+Town+Link+Rd,+Lahore,+Pakistan&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              width="100%" 
+              height="100%" 
+              style={{ border: 0, filter: 'grayscale(0.2) contrast(1.1)' }} 
+              allowFullScreen 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute inset-0 z-0"
+              title="Axiora Software Location"
+            ></iframe>
             {/* Map Overlay Card */}
             <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 bg-white/95 backdrop-blur-sm p-6 rounded-xl shadow-xl border border-white/20 max-w-sm">
               <div className="flex items-center gap-3 mb-4">
