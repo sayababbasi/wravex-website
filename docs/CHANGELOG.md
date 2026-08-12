@@ -1,6 +1,11 @@
 # Changelog
 
-## [Phases 3, 4, 5 Complete] - Current
+## [Phases 6, 7, 8 Complete] - Current
+- **Added**: `app/projects/[slug]/page.tsx` with SSG and Client component abstraction.
+- **Added**: `app/about/page.tsx` with editorial philosophy section.
+- **Added**: `app/contact/page.tsx` with fully interactive frontend-only form state (validation, loading, success).
+
+## [Phases 3, 4, 5 Complete]
 - **Added**: Data architecture for `services.ts` and `projects.ts` to power all routes.
 - **Added**: `app/services/page.tsx` (Services overview page).
 - **Added**: `app/services/[slug]/page.tsx` with dynamic static generation (SSG) and Client component abstraction for framer-motion support.
