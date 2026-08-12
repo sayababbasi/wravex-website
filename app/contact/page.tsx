@@ -2,8 +2,8 @@ import { Metadata } from "next"
 import ContactClient from "./ContactClient"
 
 export const metadata: Metadata = {
-  title: "Contact Us",
-  description: "Get in touch with Axiora Software to discuss your next software project."
+  title: "Contact Axiora Software | Let's Build Something Remarkable",
+  description: "Get in touch with Axiora Software to discuss AI solutions, software development, digital products, web and mobile applications, and business automation."
 }
 
 export default function ContactPage() {
