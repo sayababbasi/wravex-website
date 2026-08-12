@@ -30,11 +30,14 @@ export async function POST(req: Request) {
     })
 
     if (result.error) {
+      console.error("Resend API Error:", result.error)
       return NextResponse.json({ error: result.error.message }, { status: 400 })
     }
 
+    console.log("Email sent successfully:", result.data)
     return NextResponse.json({ success: true, data: result.data })
   } catch (error) {
+    console.error("Internal Server Error:", error)
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
   }
 }
