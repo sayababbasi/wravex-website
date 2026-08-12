@@ -4,13 +4,24 @@ import { motion } from "framer-motion"
 import { Project } from "@/data/projects"
 import { CTA } from "@/components/sections/CTA"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowLeft } from "lucide-react"
 
 export function ProjectDetailClient({ project }: { project: Project }) {
   return (
     <>
       <section className="pt-40 pb-24 md:pt-48 md:pb-32 bg-brand-navy-deep relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        {project.image && (
+          <Image 
+            src={project.image} 
+            alt={project.title} 
+            fill 
+            className="object-cover opacity-20 mix-blend-luminosity pointer-events-none" 
+            priority
+          />
+        )}
+        <div className="absolute inset-0 bg-brand-navy-deep/60" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 z-0" />
         <div className="container mx-auto px-6 max-w-[1400px] relative z-10">
           
           <Link href="/projects" className="inline-flex items-center gap-2 text-brand-cyan hover:text-white transition-colors text-[13px] font-bold uppercase tracking-widest mb-12">

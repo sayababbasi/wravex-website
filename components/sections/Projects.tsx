@@ -2,6 +2,7 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight, ArrowUpRight } from "lucide-react"
 import { projects } from "@/data/projects"
 
@@ -38,9 +39,18 @@ export function Projects() {
               transition={{ duration: 0.6, delay: i * 0.15 }}
               className="group relative h-[400px] md:h-[450px] rounded-xl overflow-hidden bg-brand-navy-deep flex flex-col justify-end p-8 md:p-10"
             >
-              {/* Fake Image Background Overlay for Premium Aesthetic */}
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy-deep/95 via-brand-navy-deep/60 to-transparent z-10 transition-opacity duration-500 group-hover:opacity-100" />
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#1B4282] via-brand-navy-deep to-brand-navy-deep z-0 scale-100 group-hover:scale-105 transition-transform duration-700" />
+              {/* Image Background */}
+              <div className="absolute inset-0 z-0">
+                <Image 
+                  src={project.image} 
+                  alt={project.title} 
+                  fill 
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              
+              {/* Gradient Overlay for Text Readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy-deep/95 via-brand-navy-deep/70 to-transparent z-10 transition-opacity duration-500 group-hover:opacity-100" />
               
               <div className="relative z-20">
                 <span className="text-brand-cyan font-bold tracking-[0.15em] text-[10px] uppercase mb-4 block opacity-90">

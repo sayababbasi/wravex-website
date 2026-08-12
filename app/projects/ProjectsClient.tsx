@@ -2,6 +2,7 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowUpRight } from "lucide-react"
 import { projects } from "@/data/projects"
 import { CTA } from "@/components/sections/CTA"
@@ -43,13 +44,15 @@ export function ProjectsClient() {
                 className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center"
               >
                 
-                <div className={`order-2 lg:order-${i % 2 === 0 ? '1' : '2'} aspect-[4/3] rounded-2xl relative overflow-hidden bg-gradient-to-br from-[#0A1629] to-[#040C1A] group shadow-xl`}>
-                  <div className="absolute inset-0 opacity-20 transition-opacity duration-700 group-hover:opacity-40" style={{
-                    backgroundImage: 'radial-gradient(circle at 20% 30%, rgba(32,184,232,0.4) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(18,97,201,0.4) 0%, transparent 50%)'
-                  }} />
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-white/5 font-black text-6xl whitespace-nowrap pointer-events-none uppercase tracking-widest mix-blend-overlay">
-                    {project.category}
-                  </div>
+                <div className={`order-2 lg:order-${i % 2 === 0 ? '1' : '2'} aspect-[4/3] rounded-2xl relative overflow-hidden group shadow-xl`}>
+                  <Image 
+                    src={project.image} 
+                    alt={project.title} 
+                    fill 
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  {/* Subtle overlay */}
+                  <div className="absolute inset-0 bg-brand-navy-deep/10 group-hover:bg-transparent transition-colors duration-500" />
                 </div>
 
                 <div className={`order-1 lg:order-${i % 2 === 0 ? '2' : '1'} flex flex-col`}>
