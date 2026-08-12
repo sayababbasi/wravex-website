@@ -63,9 +63,10 @@ export function Footer() {
               <li className="text-[14px] text-gray-400 hover:text-white transition-colors"><a href="mailto:hello@axiorasoftware.it.com">hello@axiorasoftware.it.com</a></li>
               <li className="text-[14px] text-gray-400">+1 (123) 456-7890</li>
               <li className="text-[14px] text-gray-500 leading-relaxed mt-2">
-                123 Innovation Street<br />
-                San Francisco, CA 94107<br />
-                USA
+                Ground Floor, New, Liberty Tower,<br />
+                19/A Model Town Link Rd,<br />
+                Block K Model Town,<br />
+                Lahore, Pakistan
               </li>
             </ul>
           </div>

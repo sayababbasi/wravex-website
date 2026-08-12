@@ -5,15 +5,29 @@ import Image from "next/image"
 import { ArrowRight, CheckCircle2, MapPin, Mail } from "lucide-react"
 
 export default function ContactClient() {
-  const [formStatus, setFormStatus] = React.useState<'idle' | 'loading' | 'success'>('idle')
+  const [formStatus, setFormStatus] = React.useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setFormStatus('loading')
-    // Simulate network request since this is frontend only
-    setTimeout(() => {
-      setFormStatus('success')
-    }, 1500)
+    
+    const formData = new FormData(e.currentTarget)
+    const data = Object.fromEntries(formData.entries())
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+      if (response.ok) {
+        setFormStatus('success')
+      } else {
+        setFormStatus('error')
+      }
+    } catch (error) {
+      setFormStatus('error')
+    }
   }
 
   return (
@@ -125,33 +139,38 @@ export default function ContactClient() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                    {formStatus === 'error' && (
+                      <div className="p-4 bg-red-50 text-red-600 border border-red-200 rounded-md text-sm font-medium">
+                        There was an error sending your message. Please try again.
+                      </div>
+                    )}
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="flex flex-col gap-2">
                         <label className="text-[13px] font-bold text-brand-navy-deep">Full Name *</label>
-                        <input required type="text" className="w-full bg-white border border-gray-200 hover:border-gray-300 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all" placeholder="Jane Doe" />
+                        <input name="name" required type="text" className="w-full bg-white border border-gray-200 hover:border-gray-300 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all" placeholder="Jane Doe" />
                       </div>
                       <div className="flex flex-col gap-2">
                         <label className="text-[13px] font-bold text-brand-navy-deep">Work Email *</label>
-                        <input required type="email" className="w-full bg-white border border-gray-200 hover:border-gray-300 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all" placeholder="jane@company.com" />
+                        <input name="email" required type="email" className="w-full bg-white border border-gray-200 hover:border-gray-300 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all" placeholder="jane@company.com" />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="flex flex-col gap-2">
                         <label className="text-[13px] font-bold text-brand-navy-deep">Company</label>
-                        <input type="text" className="w-full bg-white border border-gray-200 hover:border-gray-300 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all" placeholder="Company Name" />
+                        <input name="company" type="text" className="w-full bg-white border border-gray-200 hover:border-gray-300 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all" placeholder="Company Name" />
                       </div>
                       <div className="flex flex-col gap-2">
                         <label className="text-[13px] font-bold text-brand-navy-deep">Phone Number</label>
-                        <input type="tel" className="w-full bg-white border border-gray-200 hover:border-gray-300 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all" placeholder="+1 (555) 000-0000" />
+                        <input name="phone" type="tel" className="w-full bg-white border border-gray-200 hover:border-gray-300 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all" placeholder="+1 (555) 000-0000" />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="flex flex-col gap-2">
                         <label className="text-[13px] font-bold text-brand-navy-deep">Service *</label>
-                        <select required className="w-full bg-white border border-gray-200 hover:border-gray-300 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all appearance-none text-brand-navy-deep">
+                        <select name="service" required className="w-full bg-white border border-gray-200 hover:border-gray-300 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all appearance-none text-brand-navy-deep">
                           <option value="">Select a service</option>
                           <option value="AI Solutions">AI Solutions</option>
                           <option value="Software Development">Software Development</option>
@@ -164,7 +183,7 @@ export default function ContactClient() {
                       </div>
                       <div className="flex flex-col gap-2">
                         <label className="text-[13px] font-bold text-brand-navy-deep">Project Budget</label>
-                        <select className="w-full bg-white border border-gray-200 hover:border-gray-300 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all appearance-none text-brand-navy-deep">
+                        <select name="budget" className="w-full bg-white border border-gray-200 hover:border-gray-300 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all appearance-none text-brand-navy-deep">
                           <option value="">Select a budget range</option>
                           <option value="Under $1,000">Under $1,000</option>
                           <option value="$1,000 – $5,000">$1,000 – $5,000</option>
@@ -178,7 +197,7 @@ export default function ContactClient() {
 
                     <div className="flex flex-col gap-2">
                       <label className="text-[13px] font-bold text-brand-navy-deep">Message *</label>
-                      <textarea required rows={6} className="w-full min-h-[150px] bg-white border border-gray-200 hover:border-gray-300 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all resize-y" placeholder="Tell us about your project, goals, timeline, or challenge..." />
+                      <textarea name="message" required rows={6} className="w-full min-h-[150px] bg-white border border-gray-200 hover:border-gray-300 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all resize-y" placeholder="Tell us about your project, goals, timeline, or challenge..." />
                     </div>
 
                     <button 

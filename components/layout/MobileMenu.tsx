@@ -178,20 +178,6 @@ export function MobileMenu({ navLinks }: MobileMenuProps) {
                     </motion.div>
                   )
                 })}
-                
-                <motion.div custom={navLinks.length} variants={itemVariants} initial="closed" animate="open" exit="closed">
-                  <Link
-                    href="/contact"
-                    onClick={closeMenu}
-                    className={cn(
-                      "block text-[22px] font-semibold tracking-tight transition-colors",
-                      pathname === "/contact" ? "text-brand-blue" : "text-brand-navy-deep hover:text-brand-blue"
-                    )}
-                  >
-                    {pathname === "/contact" && <span className="text-brand-blue mr-2" aria-hidden="true">→</span>}
-                    Contact
-                  </Link>
-                </motion.div>
               </nav>
 
               {/* CTA at Bottom */}
