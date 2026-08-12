@@ -7,8 +7,7 @@ import {
   SiTypescript, 
   SiNodedotjs, 
   SiPython, 
-  SiPostgresql, 
-  SiAmazonwebservices, 
+  SiAmazonaws, 
   SiDocker, 
   SiKubernetes, 
   SiTailwindcss 
@@ -21,7 +20,7 @@ const technologies = [
   { name: "Node.js", Icon: SiNodedotjs, color: "text-[#339933]" },
   { name: "Python", Icon: SiPython, color: "text-[#3776AB]" },
   { name: "PostgreSQL", Icon: SiPostgresql, color: "text-[#4169E1]" },
-  { name: "AWS", Icon: SiAmazonwebservices, color: "text-[#232F3E]" },
+  { name: "AWS", Icon: SiAmazonaws, color: "text-[#232F3E]" },
   { name: "Docker", Icon: SiDocker, color: "text-[#2496ED]" },
   { name: "Kubernetes", Icon: SiKubernetes, color: "text-[#326CE5]" },
   { name: "Tailwind CSS", Icon: SiTailwindcss, color: "text-[#06B6D4]" }

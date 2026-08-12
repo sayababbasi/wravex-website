@@ -20,7 +20,7 @@ export function Footer() {
                 alt="Wravex Innovation" 
                 width={140} 
                 height={40} 
-                className="h-10 w-auto invert brightness-0 opacity-90"
+                className="h-10 w-auto opacity-90"
               />
             </Link>
             <p className="text-[14px] font-medium text-gray-400 mb-8 max-w-[250px]">

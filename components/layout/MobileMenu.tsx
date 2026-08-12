@@ -41,12 +41,16 @@ export function MobileMenu({ navLinks }: MobileMenuProps) {
         <div className="fixed inset-0 z-[100] bg-white flex flex-col">
           <div className="flex items-center justify-between p-4 px-4 md:px-8">
             <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
-              <div className="w-8 h-8 rounded-sm bg-brand-blue flex items-center justify-center text-white font-bold">
-                W
-              </div>
-              <span className="font-bold text-xl tracking-tight text-brand-navy-deep">
-                WRAVEX
-              </span>
+            <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
+              <Image 
+                src="/logo.png" 
+                alt="Wravex Innovation" 
+                width={140} 
+                height={40} 
+                className="h-8 w-auto"
+                priority
+              />
+            </Link>
             </Link>
             <button
               onClick={() => setIsOpen(false)}
