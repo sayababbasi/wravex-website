@@ -17,4 +17,4 @@
 - **White**: Extensive use for breathing room.
 
 ## Logo Usage
-Use the Wravex Innovation logo correctly. Do not stretch, rotate, alter colors, or place on overly complicated backgrounds.
+Use the Nexora Digital Technologies logo correctly. Do not stretch, rotate, alter colors, or place on overly complicated backgrounds.

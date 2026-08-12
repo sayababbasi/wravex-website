@@ -11,7 +11,7 @@ export function BrandStatement() {
               Technology Built Around Your Business.
             </h2>
             <p className="text-lg text-gray-300 max-w-lg leading-relaxed">
-              From intelligent automation to scalable digital products, Wravex Innovation combines modern technology with practical business thinking to create software that delivers measurable value.
+              From intelligent automation to scalable digital products, Nexora Digital Technologies combines modern technology with practical business thinking to create software that delivers measurable value.
             </p>
           </div>
           

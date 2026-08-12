@@ -1,6 +1,6 @@
-# Wravex Innovation - Premium Corporate Website
+# Nexora Digital Technologies - Premium Corporate Website
 
-This is the official frontend repository for the Wravex Innovation website.
+This is the official frontend repository for the Nexora Digital Technologies website.
 
 ## Tech Stack
 - Next.js

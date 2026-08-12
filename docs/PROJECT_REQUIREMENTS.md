@@ -1,7 +1,7 @@
 # Project Requirements
 
 ## 1. Project Overview
-Wravex Innovation is a software development company providing technology solutions. The website must establish Wravex as a professional, modern, and trustworthy technology company.
+Nexora Digital Technologies is a software development company providing technology solutions. The website must establish Nexora as a professional, modern, and trustworthy technology company.
 
 ## 2. Primary Goals
 - Establish credibility

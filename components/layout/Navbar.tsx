@@ -5,6 +5,7 @@ import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
+import { Logo } from "@/components/ui/Logo"
 import { Button } from "@/components/ui/Button"
 import { MobileMenu } from "@/components/layout/MobileMenu"
 import { ChevronDown, ArrowRight } from "lucide-react"
@@ -43,16 +44,7 @@ export function Navbar() {
         <div className="flex items-center justify-between">
           
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <Image 
-              src="/logo.png" 
-              alt="Wravex Innovation" 
-              width={140} 
-              height={40} 
-              className="h-10 w-auto"
-              priority
-            />
-          </Link>
+          <Logo />
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center justify-center gap-10 absolute left-1/2 -translate-x-1/2">

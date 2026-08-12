@@ -31,17 +31,16 @@ export function Hero() {
             </h1>
             
             <p className="text-[17px] md:text-[19px] text-text-secondary max-w-lg mb-12 font-medium leading-[1.6] text-left">
-              Wravex Innovation builds intelligent digital products, modern applications and automation solutions designed around real business needs.
+              Nexora Digital Technologies builds intelligent digital products, modern applications and automation solutions designed around real business needs.
             </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-16">
-              <Button asChild size="lg" className="h-14 px-8 rounded bg-brand-blue hover:bg-brand-navy-deep text-white font-semibold text-base transition-colors duration-300 shadow-md">
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <Button size="lg" asChild className="bg-[#1A56DB] hover:bg-[#1E40AF] text-white h-[52px] px-8 rounded font-semibold transition-all duration-300">
                 <Link href="/contact">
                   Start a Project
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="h-14 px-8 rounded border-gray-300 text-brand-navy-deep font-semibold text-base hover:bg-gray-50 transition-colors duration-300">
+              <Button size="lg" variant="outline" asChild className="h-[52px] px-8 rounded font-medium border-gray-200 text-text-primary hover:bg-gray-50 transition-colors duration-300">
                 <Link href="/services">
                   Explore Services
                   <ArrowRight className="w-4 h-4 ml-2 opacity-50" />
@@ -49,38 +48,38 @@ export function Hero() {
               </Button>
             </div>
             
-            {/* Trust Bar */}
-            <div className="flex flex-col items-start w-full mt-4">
-              <span className="text-[10px] font-bold text-text-secondary tracking-widest uppercase mb-4">
-                TRUSTED BY BUSINESSES TO DELIVER IMPACT
-              </span>
-              <div className="flex flex-wrap gap-6 md:gap-10 items-center opacity-40 grayscale">
-                <div className="flex items-center font-bold tracking-tight text-lg md:text-xl">
-                  <span className="w-5 h-5 rounded border-2 border-current mr-2 flex items-center justify-center text-[10px]">L</span>
-                  logipsum
+            {/* Trust Indicators */}
+            <div className="pt-16 mt-4 border-t border-gray-100">
+              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-6">
+                Trusted by businesses to deliver impact
+              </p>
+              <div className="flex flex-wrap gap-8 opacity-40 grayscale">
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 border-2 border-current rounded-sm"></div>
+                  <span className="font-bold tracking-tight text-xl">logoipsum</span>
                 </div>
-                <div className="flex items-center font-bold tracking-tight text-lg md:text-xl">
-                  <span className="w-5 h-5 rounded-full border-2 border-current mr-2" />
-                  LOGOIPSUM
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 rounded-full border-2 border-current"></div>
+                  <span className="font-black tracking-tighter text-xl">LOGOIPSUM</span>
                 </div>
-                <div className="flex items-center font-bold tracking-tight text-lg md:text-xl italic">
-                  logo ipsum
+                <div className="flex items-center gap-1">
+                  <span className="font-serif italic font-bold tracking-tight text-xl">logo ipsum</span>
                 </div>
-                <div className="hidden md:flex items-center font-bold tracking-tight text-xl">
-                  LOGOIPSUM
+                <div className="flex items-center gap-2">
+                  <span className="font-bold tracking-widest text-lg">LOGOIPSUM</span>
                 </div>
               </div>
             </div>
           </motion.div>
 
-          {/* Right Column - Custom Upward Arrow Visual */}
+          {/* Right Column - Visual Graphic */}
           <motion.div 
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-6 relative h-full min-h-[400px] lg:min-h-[600px] flex items-center justify-center lg:justify-end"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="hidden lg:block relative h-full min-h-[600px] w-full"
           >
-            {/* Highly sophisticated SVG Arrow composition tracking Wravex identity */}
+            {/* Highly sophisticated SVG Arrow composition tracking Nexora identity */}
             <div className="absolute right-[-10%] lg:right-[-20%] top-1/2 -translate-y-1/2 w-[140%] max-w-[900px] aspect-[4/3] pointer-events-none">
               <svg viewBox="0 0 900 600" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
                 {/* Background Grid Lines for structure */}

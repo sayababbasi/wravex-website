@@ -7,16 +7,16 @@ import { SmoothScroll } from "@/components/layout/SmoothScroll";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Wravex Innovation",
-    default: "Wravex Innovation | Smart software for a faster world.",
+    template: "%s | Nexora Digital Technologies",
+    default: "Nexora Digital Technologies | Smart software for a faster world.",
   },
-  description: "Wravex Innovation is a premier software engineering firm building scalable, resilient digital products that empower businesses to operate faster and smarter.",
+  description: "Nexora Digital Technologies builds intelligent software, AI solutions, digital products and automation systems for modern businesses.",
   keywords: ["Software Development", "AI Solutions", "Web Development", "Mobile Apps", "Enterprise Software", "Automation"],
   openGraph: {
-    title: "Wravex Innovation",
+    title: "Nexora Digital Technologies",
     description: "Smart software for a faster world.",
-    url: "https://wravex.com",
-    siteName: "Wravex Innovation",
+    url: "https://nexoradigitaltechnologies.com",
+    siteName: "Nexora Digital Technologies",
     locale: "en_US",
     type: "website",
   },

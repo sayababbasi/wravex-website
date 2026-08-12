@@ -1,5 +1,10 @@
 # Changelog
 
+## [Phase 16 Complete] - Rebranding
+- **Migrated**: Rebranded website from Wravex Innovation to Nexora Digital Technologies.
+- **Migrated**: Metadata, SEO, Open Graph tags updated to target `nexoradigitaltechnologies.com`.
+- **Migrated**: Implemented typographic placeholder logo architecture for Nexora.
+- **Migrated**: Cleaned all UI copy and internal references.
 ## [Phases 9-15 Complete] - Final
 - **Added**: Complete SEO `metadata` architecture across all pages using Server/Client component splitting.
 - **Added**: Active state routing logic inside `Navbar.tsx` based on `usePathname`.

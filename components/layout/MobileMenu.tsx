@@ -6,6 +6,7 @@ import Image from "next/image"
 import { Menu, X } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
+import { Logo } from "@/components/ui/Logo"
 import { Button } from "@/components/ui/Button"
 
 interface MobileMenuProps {
@@ -41,16 +42,7 @@ export function MobileMenu({ navLinks }: MobileMenuProps) {
       {isOpen && (
         <div className="fixed inset-0 z-[100] bg-white flex flex-col">
           <div className="flex items-center justify-between p-4 px-4 md:px-8">
-            <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
-              <Image 
-                src="/logo.png" 
-                alt="Wravex Innovation" 
-                width={140} 
-                height={40} 
-                className="h-8 w-auto"
-                priority
-              />
-            </Link>
+            <Logo />
             <button
               onClick={() => setIsOpen(false)}
               className="p-2 -mr-2 text-brand-navy-deep hover:text-brand-blue transition-colors"
