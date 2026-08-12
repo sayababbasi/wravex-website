@@ -20,9 +20,12 @@ All notable changes to this project will be documented in this file.
 
 ## Phase 05 - Homepage Core Sections
 - **Date**: 2026-08-12
-- **Major changes**:
-  - Built all core homepage sections: Brand Statement, Services Preview, Solutions, Why Wravex, Projects Preview, Technologies, Process, and CTA.
-  - Integrated all sections into `app/page.tsx`.
-- **New components**:
-  - `BrandStatement.tsx`, `ServicesPreview.tsx`, `SolutionsPreview.tsx`, `WhyWravex.tsx`, `ProjectsPreview.tsx`, `Technologies.tsx`, `Process.tsx`, `CTA.tsx`.
+- **Major changes**: Built all core homepage sections and integrated them into `app/page.tsx`.
+
+## Phase 06 - Services Experience
+- **Date**: 2026-08-12
+- **Major changes**: 
+  - Created `/services` index page.
+  - Built a dynamic service page template (`ServicePageTemplate.tsx`) and dynamic route `/services/[slug]`.
+  - Statically generated 5 primary service pages using `generateStaticParams`.
 - **Testing**: Successfully ran `npm run build`.
