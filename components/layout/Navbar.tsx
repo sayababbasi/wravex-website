@@ -12,6 +12,7 @@ import { ChevronDown, ArrowRight } from "lucide-react"
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "Services", href: "/services", hasDropdown: true },
+  { name: "Solutions", href: "/solutions" },
   { name: "Projects", href: "/projects" },
   { name: "About", href: "/about" },
 ]
