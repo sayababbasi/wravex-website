@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Menu, X } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
@@ -41,7 +42,6 @@ export function MobileMenu({ navLinks }: MobileMenuProps) {
         <div className="fixed inset-0 z-[100] bg-white flex flex-col">
           <div className="flex items-center justify-between p-4 px-4 md:px-8">
             <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
-            <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
               <Image 
                 src="/logo.png" 
                 alt="Wravex Innovation" 
@@ -50,7 +50,6 @@ export function MobileMenu({ navLinks }: MobileMenuProps) {
                 className="h-8 w-auto"
                 priority
               />
-            </Link>
             </Link>
             <button
               onClick={() => setIsOpen(false)}
