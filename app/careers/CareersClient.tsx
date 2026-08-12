@@ -292,7 +292,7 @@ export default function CareersClient() {
       {/* MODAL: APPLICATION FORM */}
       <AnimatePresence>
         {(selectedJob || showGeneralForm) && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6 overflow-hidden">
             <motion.div 
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               className="absolute inset-0 bg-brand-navy-deep/60 backdrop-blur-sm"
@@ -302,9 +302,9 @@ export default function CareersClient() {
               initial={{ opacity: 0, y: 50, scale: 0.95 }} 
               animate={{ opacity: 1, y: 0, scale: 1 }} 
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative bg-white rounded-2xl w-full max-w-[800px] max-h-[90vh] overflow-y-auto overscroll-none shadow-2xl flex flex-col"
+              className="relative bg-white rounded-2xl w-full max-w-[800px] max-h-[90vh] flex flex-col shadow-2xl overflow-hidden"
             >
-              <div className="sticky top-0 bg-white/90 backdrop-blur-md border-b border-gray-100 p-6 flex justify-between items-center z-10">
+              <div className="shrink-0 sticky top-0 bg-white/90 backdrop-blur-md border-b border-gray-100 p-6 flex justify-between items-center z-20">
                 <h3 className="text-[20px] font-bold text-brand-navy-deep">
                   {selectedJob ? `Apply: ${selectedJob.title}` : 'General Application'}
                 </h3>
@@ -313,7 +313,7 @@ export default function CareersClient() {
                 </button>
               </div>
 
-              <div className="p-6 md:p-10">
+              <div className="flex-1 overflow-y-auto p-6 md:p-10 overscroll-contain">
                 {selectedJob && (
                   <div className="mb-10 pb-10 border-b border-gray-100">
                     <div className="flex flex-wrap gap-4 mb-6">
