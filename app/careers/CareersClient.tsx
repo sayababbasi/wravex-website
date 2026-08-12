@@ -1,9 +1,8 @@
 "use client"
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import Image from "next/image"
-import { ArrowRight, CheckCircle2, X, Briefcase, MapPin, Clock, Calendar } from "lucide-react"
-import { Job, jobs, getJobsByCategory } from "../../data/careers"
+import { ArrowRight, CheckCircle2, X, Briefcase, MapPin } from "lucide-react"
+import { Job, getJobsByCategory } from "../../data/careers"
 
 export default function CareersClient() {
   const [activeTab, setActiveTab] = React.useState<'Experienced' | 'Internship'>('Experienced')
@@ -82,10 +81,10 @@ export default function CareersClient() {
                 CAREERS AT AXIORA
               </div>
               <h1 className="text-[48px] md:text-[64px] lg:text-[76px] font-bold tracking-tighter text-brand-navy-deep leading-[1.05] mb-6">
-                Build What's Next.
+                Build What&apos;s Next.
               </h1>
               <p className="text-text-secondary text-[18px] md:text-[20px] font-medium leading-[1.6] max-w-lg mb-10">
-                We're building intelligent software, digital products, and automation systems for businesses that want to move faster. If you love solving meaningful problems with technology, we'd love to hear from you.
+                We&apos;re building intelligent software, digital products, and automation systems for businesses that want to move faster. If you love solving meaningful problems with technology, we&apos;d love to hear from you.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button 
@@ -133,7 +132,7 @@ export default function CareersClient() {
           <div className="text-center mb-16">
             <h2 className="text-[36px] md:text-[48px] font-bold tracking-tight text-brand-navy-deep mb-6">Find Your Place at Axiora.</h2>
             <p className="text-text-secondary text-[18px] md:text-[20px] font-medium leading-[1.6] max-w-2xl mx-auto">
-              We're always looking for people who care about quality, curiosity, and building technology that solves real problems.
+              We&apos;re always looking for people who care about quality, curiosity, and building technology that solves real problems.
             </p>
           </div>
 
@@ -272,9 +271,9 @@ export default function CareersClient() {
       {/* 5. GENERAL APPLICATION CTA */}
       <section className="py-24 bg-brand-navy-deep text-white text-center">
         <div className="container mx-auto px-6 max-w-[800px]">
-          <h2 className="text-[32px] md:text-[48px] font-bold tracking-tight mb-6">Don't See Your Role?</h2>
+          <h2 className="text-[32px] md:text-[48px] font-bold tracking-tight mb-6">Don&apos;t See Your Role?</h2>
           <p className="text-gray-300 text-[18px] md:text-[20px] leading-relaxed mb-12">
-            We're always interested in meeting people who bring strong technical skills, curiosity, and a genuine interest in building great software.
+            We&apos;re always interested in meeting people who bring strong technical skills, curiosity, and a genuine interest in building great software.
           </p>
           <button 
             onClick={() => setShowGeneralForm(true)}
@@ -323,7 +322,7 @@ export default function CareersClient() {
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                       <div>
-                        <h4 className="font-bold text-brand-navy-deep mb-4 text-[16px]">What you'll work on</h4>
+                        <h4 className="font-bold text-brand-navy-deep mb-4 text-[16px]">What you&apos;ll work on</h4>
                         <ul className="space-y-2">
                           {selectedJob.responsibilities.map((req, i) => (
                             <li key={i} className="text-text-secondary text-[14px] flex gap-2"><div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-blue shrink-0" /> {req}</li>
@@ -412,14 +411,6 @@ export default function CareersClient() {
                     <div className="flex flex-col gap-2">
                       <label className="text-[13px] font-bold text-brand-navy-deep">Cover Letter / Message *</label>
                       <textarea name="message" required rows={6} className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:bg-white transition-all resize-y" placeholder="Tell us about your work and why you want to join..." />
-                    </div>
-
-                    <div className="flex flex-col gap-2">
-                      <label className="text-[13px] font-bold text-brand-navy-deep">Resume Upload *</label>
-                      <div className="w-full border-2 border-dashed border-gray-300 rounded-lg p-8 flex flex-col items-center justify-center text-center hover:bg-gray-50 transition-colors">
-                        <div className="text-gray-500 text-[14px] mb-2">Drag and drop your resume here, or click to browse.</div>
-                        <div className="text-gray-400 text-[12px]">(Frontend-only UI: Files are not actually uploaded)</div>
-                      </div>
                     </div>
 
                     <button 

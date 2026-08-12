@@ -64,7 +64,7 @@ export function MobileMenu({ navLinks }: MobileMenuProps) {
   const closeMenu = () => setIsOpen(false)
 
   // Drawer Animation Variants
-  const drawerVariants: any = {
+  const drawerVariants = {
     closed: { 
       x: "100%",
       transition: { 
@@ -82,13 +82,13 @@ export function MobileMenu({ navLinks }: MobileMenuProps) {
   }
 
   // Backdrop Animation Variants
-  const backdropVariants: any = {
+  const backdropVariants = {
     closed: { opacity: 0, pointerEvents: "none", transition: { duration: 0.3 } },
     open: { opacity: 1, pointerEvents: "auto", transition: { duration: 0.4 } }
   }
 
   // Item staggered animation
-  const itemVariants: any = {
+  const itemVariants = {
     closed: { opacity: 0, x: 15 },
     open: (i: number) => ({
       opacity: 1, 
