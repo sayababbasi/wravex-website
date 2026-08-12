@@ -10,6 +10,7 @@ export default function CareersClient() {
   
   // General Application State
   const [showGeneralForm, setShowGeneralForm] = React.useState(false)
+  const [isApplying, setIsApplying] = React.useState(false)
   const [formStatus, setFormStatus] = React.useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = React.useState("")
 
@@ -49,23 +50,47 @@ export default function CareersClient() {
   const closeForm = () => {
     setSelectedJob(null)
     setShowGeneralForm(false)
+    setIsApplying(false)
     setFormStatus('idle')
     setErrorMsg("")
   }
 
+  // Robust Scroll Lock
   React.useEffect(() => {
     if (selectedJob || showGeneralForm) {
-      document.body.style.overflow = 'hidden'
-      document.documentElement.style.overflow = 'hidden'
+      const scrollY = window.scrollY
+      document.body.style.position = 'fixed'
+      document.body.style.top = `-${scrollY}px`
+      document.body.style.width = '100%'
+      document.body.style.overflowY = 'scroll' // Prevent layout shift
     } else {
-      document.body.style.overflow = ''
-      document.documentElement.style.overflow = ''
-    }
-    return () => { 
-      document.body.style.overflow = ''
-      document.documentElement.style.overflow = ''
+      const scrollY = document.body.style.top
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
+      document.body.style.overflowY = ''
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1)
+      }
     }
   }, [selectedJob, showGeneralForm])
+
+  // Escape Key Handler
+  React.useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        if (isApplying && selectedJob) {
+          setIsApplying(false)
+        } else {
+          closeForm()
+        }
+      }
+    }
+    if (selectedJob || showGeneralForm) {
+      window.addEventListener('keydown', handleEscape)
+    }
+    return () => window.removeEventListener('keydown', handleEscape)
+  }, [selectedJob, showGeneralForm, isApplying])
 
   return (
     <div className="bg-white selection:bg-brand-blue/20">
@@ -292,144 +317,259 @@ export default function CareersClient() {
       {/* MODAL: APPLICATION FORM */}
       <AnimatePresence>
         {(selectedJob || showGeneralForm) && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6 overflow-hidden">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 md:p-6 overflow-hidden">
             <motion.div 
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-brand-navy-deep/60 backdrop-blur-sm"
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute inset-0 bg-[#070f1e]/45 backdrop-blur-[2px]"
               onClick={closeForm}
             />
+            
             <motion.div 
-              initial={{ opacity: 0, y: 50, scale: 0.95 }} 
-              animate={{ opacity: 1, y: 0, scale: 1 }} 
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative bg-white rounded-2xl w-full max-w-[800px] max-h-[90vh] flex flex-col shadow-2xl overflow-hidden"
+              initial={{ opacity: 0, y: 12 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              exit={{ opacity: 0, y: 8 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="relative bg-white w-full h-[100dvh] md:h-auto md:max-h-[calc(100dvh-48px)] md:w-[min(1100px,calc(100vw-48px))] md:rounded-2xl flex flex-col shadow-2xl overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
             >
-              <div className="shrink-0 sticky top-0 bg-white/90 backdrop-blur-md border-b border-gray-100 p-6 flex justify-between items-center z-20">
-                <h3 className="text-[20px] font-bold text-brand-navy-deep">
-                  {selectedJob ? `Apply: ${selectedJob.title}` : 'General Application'}
-                </h3>
-                <button onClick={closeForm} className="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center text-gray-600 transition-colors">
+              {/* HEADER */}
+              <div className="shrink-0 sticky top-0 bg-white/95 backdrop-blur-md border-b border-gray-100 px-6 py-5 md:px-12 md:py-8 flex justify-between items-start z-20">
+                <div className="pr-4">
+                  <div className="text-[11px] font-bold tracking-widest text-brand-blue uppercase mb-2">
+                    {selectedJob ? `CAREERS / ${selectedJob.department}` : 'CAREERS / GENERAL'}
+                  </div>
+                  <h3 className="text-[24px] md:text-[32px] font-bold text-brand-navy-deep leading-tight mb-4">
+                    {selectedJob ? selectedJob.title : 'General Application'}
+                  </h3>
+                  
+                  {selectedJob && (
+                    <div className="flex flex-wrap items-center gap-2 text-[13px] md:text-[14px] font-medium text-gray-600">
+                      <span>{selectedJob.type}</span>
+                      {selectedJob.category === 'Experienced' && (
+                        <>
+                          <span className="w-1 h-1 rounded-full bg-gray-300"></span>
+                          <span className="text-brand-navy-deep font-semibold">{selectedJob.experience}</span>
+                        </>
+                      )}
+                      <span className="w-1 h-1 rounded-full bg-gray-300"></span>
+                      <span>{selectedJob.location}</span>
+                    </div>
+                  )}
+                </div>
+                
+                <button 
+                  onClick={closeForm} 
+                  className="shrink-0 w-11 h-11 bg-gray-50 hover:bg-gray-100 rounded-full flex items-center justify-center text-gray-500 hover:text-brand-navy-deep transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue"
+                  aria-label="Close"
+                >
                   <X className="w-5 h-5" />
                 </button>
               </div>
 
-              <div className="flex-1 overflow-y-auto p-6 md:p-10 overscroll-contain">
-                {selectedJob && (
-                  <div className="mb-10 pb-10 border-b border-gray-100">
-                    <div className="flex flex-wrap gap-4 mb-6">
-                      <span className="bg-brand-blue/10 text-brand-blue px-3 py-1 rounded text-[13px] font-bold">{selectedJob.department}</span>
-                      <span className={`px-3 py-1 rounded text-[13px] font-bold ${selectedJob.category === 'Experienced' ? 'bg-red-50 text-red-600' : 'bg-green-50 text-green-600'}`}>
-                        {selectedJob.experience}
-                      </span>
-                      <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded text-[13px] font-bold">{selectedJob.location}</span>
-                    </div>
-                    <p className="text-text-secondary leading-relaxed mb-8">{selectedJob.shortDescription}</p>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                      <div>
-                        <h4 className="font-bold text-brand-navy-deep mb-4 text-[16px]">What you&apos;ll work on</h4>
-                        <ul className="space-y-2">
-                          {selectedJob.responsibilities.map((req, i) => (
-                            <li key={i} className="text-text-secondary text-[14px] flex gap-2"><div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-blue shrink-0" /> {req}</li>
-                          ))}
-                        </ul>
+              {/* CONTENT BODY */}
+              <div className="flex-1 overflow-y-auto overscroll-contain bg-white">
+                <div className="px-6 py-8 md:px-12 md:py-12">
+                  
+                  {formStatus === 'success' ? (
+                    <div className="flex flex-col items-center justify-center py-20 text-center">
+                      <div className="w-20 h-20 bg-green-50 border border-green-100 rounded-full flex items-center justify-center text-green-600 mb-6">
+                        <CheckCircle2 className="w-10 h-10" />
                       </div>
-                      <div>
-                        <h4 className="font-bold text-brand-navy-deep mb-4 text-[16px]">Requirements</h4>
-                        <ul className="space-y-2">
+                      <h3 className="text-[28px] md:text-[36px] font-bold text-brand-navy-deep mb-4">Application Prepared.</h3>
+                      <p className="text-text-secondary text-[16px] md:text-[18px] max-w-lg leading-relaxed mb-8">
+                        Thanks for your interest in Axiora Software. Your application has been successfully forwarded to our HR team for review.
+                      </p>
+                      <button onClick={closeForm} className="text-brand-blue font-bold hover:underline">Close Window</button>
+                    </div>
+                  ) : isApplying || showGeneralForm ? (
+                    <div className="max-w-3xl mx-auto">
+                      <div className="flex items-center gap-4 mb-10">
+                        {selectedJob && (
+                          <button 
+                            onClick={() => setIsApplying(false)}
+                            className="text-gray-500 hover:text-brand-navy-deep font-semibold text-[14px] flex items-center gap-2"
+                          >
+                            ← Back to Details
+                          </button>
+                        )}
+                        <h4 className="font-bold text-brand-navy-deep text-[24px]">Submit Your Application</h4>
+                      </div>
+                      
+                      <form onSubmit={handleApply} className="flex flex-col gap-8">
+                        {formStatus === 'error' && (
+                          <div className="p-4 bg-red-50 text-red-600 border border-red-200 rounded-md text-sm font-medium">
+                            {errorMsg}
+                          </div>
+                        )}
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                          <div className="flex flex-col gap-2.5">
+                            <label className="text-[14px] font-bold text-brand-navy-deep">Full Name <span className="text-brand-blue">*</span></label>
+                            <input name="name" required type="text" className="w-full bg-gray-50 border border-gray-200 rounded-md px-4 py-3.5 text-[15px] outline-none focus:border-brand-blue focus:bg-white focus:ring-1 focus:ring-brand-blue transition-all" />
+                          </div>
+                          <div className="flex flex-col gap-2.5">
+                            <label className="text-[14px] font-bold text-brand-navy-deep">Email Address <span className="text-brand-blue">*</span></label>
+                            <input name="email" required type="email" className="w-full bg-gray-50 border border-gray-200 rounded-md px-4 py-3.5 text-[15px] outline-none focus:border-brand-blue focus:bg-white focus:ring-1 focus:ring-brand-blue transition-all" />
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                          <div className="flex flex-col gap-2.5">
+                            <label className="text-[14px] font-bold text-brand-navy-deep">Phone Number</label>
+                            <input name="phone" type="tel" className="w-full bg-gray-50 border border-gray-200 rounded-md px-4 py-3.5 text-[15px] outline-none focus:border-brand-blue focus:bg-white focus:ring-1 focus:ring-brand-blue transition-all" />
+                          </div>
+                          <div className="flex flex-col gap-2.5">
+                            <label className="text-[14px] font-bold text-brand-navy-deep">Years of Experience <span className="text-brand-blue">*</span></label>
+                            <select name="yearsExperience" required className="w-full bg-gray-50 border border-gray-200 rounded-md px-4 py-3.5 text-[15px] outline-none focus:border-brand-blue focus:bg-white focus:ring-1 focus:ring-brand-blue transition-all">
+                              <option value="">Select</option>
+                              <option value="Student / Entry Level">Student / Entry Level</option>
+                              <option value="1-3 Years">1-3 Years</option>
+                              <option value="3-5 Years">3-5 Years</option>
+                              <option value="5+ Years">5+ Years</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                          <div className="flex flex-col gap-2.5">
+                            <label className="text-[14px] font-bold text-brand-navy-deep">LinkedIn Profile</label>
+                            <input name="linkedin" type="url" className="w-full bg-gray-50 border border-gray-200 rounded-md px-4 py-3.5 text-[15px] outline-none focus:border-brand-blue focus:bg-white focus:ring-1 focus:ring-brand-blue transition-all" />
+                          </div>
+                          <div className="flex flex-col gap-2.5">
+                            <label className="text-[14px] font-bold text-brand-navy-deep">GitHub / Portfolio</label>
+                            <input name="portfolio" type="url" className="w-full bg-gray-50 border border-gray-200 rounded-md px-4 py-3.5 text-[15px] outline-none focus:border-brand-blue focus:bg-white focus:ring-1 focus:ring-brand-blue transition-all" />
+                          </div>
+                        </div>
+                        
+                        {showGeneralForm && (
+                          <div className="flex flex-col gap-2.5">
+                            <label className="text-[14px] font-bold text-brand-navy-deep">Area of Expertise <span className="text-brand-blue">*</span></label>
+                            <input name="expertise" required type="text" className="w-full bg-gray-50 border border-gray-200 rounded-md px-4 py-3.5 text-[15px] outline-none focus:border-brand-blue focus:bg-white focus:ring-1 focus:ring-brand-blue transition-all" placeholder="e.g. Frontend, Backend, UI/UX" />
+                          </div>
+                        )}
+
+                        <div className="flex flex-col gap-2.5">
+                          <label className="text-[14px] font-bold text-brand-navy-deep">Cover Letter / Message <span className="text-brand-blue">*</span></label>
+                          <textarea name="message" required rows={6} className="w-full bg-gray-50 border border-gray-200 rounded-md px-4 py-3.5 text-[15px] outline-none focus:border-brand-blue focus:bg-white focus:ring-1 focus:ring-brand-blue transition-all resize-y" placeholder="Tell us about your work and why you want to join..." />
+                        </div>
+
+                        <div className="pt-6 pb-24 md:pb-6">
+                          <button 
+                            type="submit" 
+                            disabled={formStatus === 'loading'}
+                            className="w-full h-[60px] bg-brand-blue hover:bg-[#1546b5] active:scale-[0.98] text-white font-bold rounded-md flex items-center justify-center gap-2 transition-all disabled:opacity-70 shadow-lg shadow-brand-blue/20"
+                          >
+                            {formStatus === 'loading' ? 'Preparing Application...' : (
+                              <>Submit Application <ArrowRight className="w-5 h-5" /></>
+                            )}
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  ) : selectedJob ? (
+                    <div className="max-w-4xl">
+                      {/* ROLE DESCRIPTION */}
+                      <section className="mb-14">
+                        <h4 className="text-[12px] font-bold text-brand-navy-deep tracking-wider uppercase mb-4">
+                          {selectedJob.category === 'Internship' ? 'About the Internship' : 'About the Role'}
+                        </h4>
+                        <p className="text-text-secondary text-[16px] md:text-[18px] leading-relaxed">
+                          {selectedJob.shortDescription}
+                        </p>
+                      </section>
+
+                      {/* RESPONSIBILITIES */}
+                      <section className="mb-14">
+                        <h4 className="text-[12px] font-bold text-brand-navy-deep tracking-wider uppercase mb-6">
+                          {selectedJob.category === 'Internship' ? "What You'll Learn & Do" : "Responsibilities"}
+                        </h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                          {selectedJob.responsibilities.map((req, i) => {
+                            const num = String(i + 1).padStart(2, '0')
+                            return (
+                              <div key={i} className="flex gap-4">
+                                <span className="text-[14px] font-bold text-gray-300 mt-0.5 select-none">{num}</span>
+                                <p className="text-text-secondary text-[15px] leading-relaxed">{req}</p>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      </section>
+
+                      {/* REQUIREMENTS */}
+                      <section className="mb-14">
+                        <h4 className="text-[12px] font-bold text-brand-navy-deep tracking-wider uppercase mb-6">
+                          {selectedJob.category === 'Internship' ? "Who Can Apply" : "Requirements"}
+                        </h4>
+                        <ul className="space-y-4">
                           {selectedJob.requirements.map((req, i) => (
-                            <li key={i} className="text-text-secondary text-[14px] flex gap-2"><div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-blue shrink-0" /> {req}</li>
+                            <li key={i} className="flex gap-4">
+                              <span className="text-brand-blue shrink-0 mt-0.5">✓</span>
+                              <span className="text-text-secondary text-[15px] leading-relaxed">{req}</span>
+                            </li>
                           ))}
                         </ul>
-                      </div>
-                    </div>
-                  </div>
-                )}
+                      </section>
 
-                {formStatus === 'success' ? (
-                  <div className="flex flex-col items-center justify-center py-20 text-center">
-                    <div className="w-20 h-20 bg-green-50 border border-green-100 rounded-full flex items-center justify-center text-green-600 mb-6">
-                      <CheckCircle2 className="w-10 h-10" />
-                    </div>
-                    <h3 className="text-[28px] font-bold text-brand-navy-deep mb-4">Application Prepared.</h3>
-                    <p className="text-text-secondary font-medium max-w-md leading-[1.6]">
-                      Thanks for your interest in Axiora Software. Your application has been prepared successfully and will be reviewed by our team.
-                    </p>
-                    <button onClick={closeForm} className="mt-8 text-brand-blue font-bold hover:underline">Close Window</button>
-                  </div>
-                ) : (
-                  <form onSubmit={handleApply} className="flex flex-col gap-6">
-                    <h4 className="font-bold text-brand-navy-deep text-[20px] mb-2">Submit Your Application</h4>
-                    
-                    {formStatus === 'error' && (
-                      <div className="p-4 bg-red-50 text-red-600 border border-red-200 rounded-md text-sm font-medium">
-                        {errorMsg}
-                      </div>
-                    )}
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="flex flex-col gap-2">
-                        <label className="text-[13px] font-bold text-brand-navy-deep">Full Name *</label>
-                        <input name="name" required type="text" className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:bg-white transition-all" />
-                      </div>
-                      <div className="flex flex-col gap-2">
-                        <label className="text-[13px] font-bold text-brand-navy-deep">Email Address *</label>
-                        <input name="email" required type="email" className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:bg-white transition-all" />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="flex flex-col gap-2">
-                        <label className="text-[13px] font-bold text-brand-navy-deep">Phone Number</label>
-                        <input name="phone" type="tel" className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:bg-white transition-all" />
-                      </div>
-                      <div className="flex flex-col gap-2">
-                        <label className="text-[13px] font-bold text-brand-navy-deep">Years of Experience *</label>
-                        <select name="yearsExperience" required className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:bg-white transition-all">
-                          <option value="">Select</option>
-                          <option value="Student / Entry Level">Student / Entry Level</option>
-                          <option value="1-3 Years">1-3 Years</option>
-                          <option value="3-5 Years">3-5 Years</option>
-                          <option value="5+ Years">5+ Years</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="flex flex-col gap-2">
-                        <label className="text-[13px] font-bold text-brand-navy-deep">LinkedIn Profile</label>
-                        <input name="linkedin" type="url" className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:bg-white transition-all" />
-                      </div>
-                      <div className="flex flex-col gap-2">
-                        <label className="text-[13px] font-bold text-brand-navy-deep">GitHub / Portfolio</label>
-                        <input name="portfolio" type="url" className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:bg-white transition-all" />
-                      </div>
-                    </div>
-                    
-                    {!selectedJob && (
-                      <div className="flex flex-col gap-2">
-                        <label className="text-[13px] font-bold text-brand-navy-deep">Area of Expertise *</label>
-                        <input name="expertise" required type="text" className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:bg-white transition-all" placeholder="e.g. Frontend, Backend, UI/UX" />
-                      </div>
-                    )}
-
-                    <div className="flex flex-col gap-2">
-                      <label className="text-[13px] font-bold text-brand-navy-deep">Cover Letter / Message *</label>
-                      <textarea name="message" required rows={6} className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-[14px] outline-none focus:border-brand-blue focus:bg-white transition-all resize-y" placeholder="Tell us about your work and why you want to join..." />
-                    </div>
-
-                    <button 
-                      type="submit" 
-                      disabled={formStatus === 'loading'}
-                      className="mt-6 h-14 w-full bg-brand-blue hover:bg-[#1546b5] active:scale-[0.98] text-white font-bold rounded flex items-center justify-center gap-2 transition-all disabled:opacity-70 shadow-md"
-                    >
-                      {formStatus === 'loading' ? 'Preparing Application...' : (
-                        <>Apply for This Position <ArrowRight className="w-4 h-4" /></>
+                      {/* NICE TO HAVE */}
+                      {selectedJob.niceToHave && selectedJob.niceToHave.length > 0 && (
+                        <section className="mb-14">
+                          <h4 className="text-[12px] font-bold text-brand-navy-deep tracking-wider uppercase mb-6">Nice to Have</h4>
+                          <ul className="space-y-4">
+                            {selectedJob.niceToHave.map((req, i) => (
+                              <li key={i} className="flex gap-4">
+                                <span className="text-gray-300 shrink-0 mt-0.5">✓</span>
+                                <span className="text-text-secondary text-[15px] leading-relaxed">{req}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </section>
                       )}
-                    </button>
-                  </form>
-                )}
+
+                      {/* SKILLS */}
+                      {selectedJob.skills && selectedJob.skills.length > 0 && (
+                        <section className="mb-16">
+                          <h4 className="text-[12px] font-bold text-brand-navy-deep tracking-wider uppercase mb-6">Technologies & Skills</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {selectedJob.skills.map((skill, i) => (
+                              <span key={i} className="px-3 py-1.5 bg-gray-50 border border-gray-200 text-gray-600 rounded text-[13px] font-medium">
+                                {skill}
+                              </span>
+                            ))}
+                          </div>
+                        </section>
+                      )}
+                      
+                      {/* BOTTOM CTA FOR DESKTOP IN-FLOW */}
+                      <div className="hidden md:block border-t border-gray-100 pt-12 pb-6 text-center">
+                        <h3 className="text-[24px] font-bold text-brand-navy-deep mb-4">Ready to build with Axiora?</h3>
+                        <p className="text-text-secondary mb-8">Take the next step in your career.</p>
+                        <button 
+                          onClick={() => setIsApplying(true)}
+                          className="inline-flex items-center justify-center gap-2 h-14 px-10 bg-brand-navy-deep hover:bg-brand-blue text-white font-bold rounded-md transition-all shadow-lg"
+                        >
+                          Apply for This Position <ArrowRight className="w-5 h-5" />
+                        </button>
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
               </div>
+              
+              {/* STICKY BOTTOM CTA FOR MOBILE */}
+              {selectedJob && !isApplying && formStatus !== 'success' && (
+                <div className="md:hidden shrink-0 bg-white border-t border-gray-100 p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]" style={{ paddingBottom: 'calc(1rem + env(safe-area-inset-bottom))' }}>
+                  <button 
+                    onClick={() => setIsApplying(true)}
+                    className="w-full h-14 bg-brand-navy-deep text-white font-bold rounded-md flex items-center justify-center gap-2 transition-all active:scale-[0.98]"
+                  >
+                    Apply for This Position <ArrowRight className="w-5 h-5" />
+                  </button>
+                </div>
+              )}
             </motion.div>
           </div>
         )}
