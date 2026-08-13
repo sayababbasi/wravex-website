@@ -6,14 +6,15 @@ import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://axiorasoftware.it.com'),
   title: {
     template: "%s | Axiora Software",
     default: "Axiora Software | Smart software for a faster world.",
   },
   description: "Axiora Software builds intelligent software, AI solutions, digital products and automation systems for modern businesses.",
-  keywords: ["Software Development", "AI Solutions", "Web Development", "Mobile Apps", "Enterprise Software", "Automation"],
+  keywords: ["Software Development", "AI Solutions", "Web Development", "Mobile Apps", "Enterprise Software", "Automation", "Lahore", "Pakistan"],
   openGraph: {
-    title: "Axiora Software",
+    title: "Axiora Software | Smart software for a faster world.",
     description: "Axiora Software builds intelligent software, AI solutions, digital products and automation systems for modern businesses.",
     url: "https://axiorasoftware.it.com",
     siteName: "Axiora Software",
@@ -28,10 +29,27 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Axiora Software",
+    description: "Smart software for a faster world.",
+    images: ["/og-image.jpg"],
+  },
   icons: {
     icon: "/favicon.png",
     apple: "/favicon.png",
-  }
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 const inter = Inter({

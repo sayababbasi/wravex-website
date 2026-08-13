@@ -3,7 +3,7 @@ import { SolutionsClient } from "./SolutionsClient"
 
 export const metadata: Metadata = {
   title: "Solutions",
-  description: "Explore our comprehensive technological solutions designed to solve complex operational bottlenecks."
+  description: "Discover tailored software and AI solutions designed specifically for your industry's unique challenges.",
 }
 
 export default function SolutionsPage() {

@@ -3,7 +3,7 @@ import AboutClient from "./AboutClient"
 
 export const metadata: Metadata = {
   title: "About Us",
-  description: "Learn about Axiora Software, our philosophy, and how we build resilient digital products."
+  description: "Learn about Axiora Software's mission, our team, and how we build intelligent software solutions for modern businesses.",
 }
 
 export default function AboutPage() {
